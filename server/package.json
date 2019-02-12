@@ -1,0 +1,14 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "./node_modules/nodemon/bin/nodemon.js src/app.js"
+  },
+  "author": "Benjamin WATERLOT",
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^1.18.10"
+  }
+}

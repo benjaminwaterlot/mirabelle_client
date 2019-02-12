@@ -15,5 +15,6 @@
   "bugs": {
     "url": "https://github.com/benjaminwaterlot/mirabelle/issues"
   },
-  "homepage": "https://github.com/benjaminwaterlot/mirabelle#readme"
+  "homepage": "https://github.com/benjaminwaterlot/mirabelle#readme",
+  "dependencies": {}
 }
