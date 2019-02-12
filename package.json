@@ -1,0 +1,19 @@
+{
+  "name": "mirabelle",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benjaminwaterlot/mirabelle.git"
+  },
+  "author": "Benjamin WATERLOT",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/benjaminwaterlot/mirabelle/issues"
+  },
+  "homepage": "https://github.com/benjaminwaterlot/mirabelle#readme"
+}
