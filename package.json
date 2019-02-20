@@ -16,5 +16,7 @@
     "url": "https://github.com/benjaminwaterlot/mirabelle/issues"
   },
   "homepage": "https://github.com/benjaminwaterlot/mirabelle#readme",
-  "dependencies": {}
+  "dependencies": {
+    "lodash": "^4.17.11"
+  }
 }
