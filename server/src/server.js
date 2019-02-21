@@ -1,35 +1,20 @@
 const express = require('express');
-const MongoClient = require('mongodb').MongoClient;
+const mongoClient = require('./mongodb/mongoSetup')
+const addClient = require('./mongodb/customers').addClient
 
 const { ApolloServer, gql } = require('apollo-server-express');
 
-const mongoUri = 'mongodb+srv://benjamin:benjamin@mirabelle-tpfpe.gcp.mongodb.net/test?retryWrites=true';
-const client = new MongoClient(mongoUri, { useNewUrlParser: true });
-
-client.connect(err => {
+mongoClient.connect(err => {
 	console.log("Database connected");
 	if (err)
 		throw err;
-	client.db('mirabelle').collection('clients').find().toArray(function (err, result) {
+	mongoClient.db('mirabelle').collection('clients').find().toArray(function (err, result) {
 		if (err) {
 			throw err;
 		}
 		console.log(result);
 	});
 });
-
-const addClient = (id, name) => {
-	client.connect(err => {
-		if (err) throw err;
-		(async () => {
-			const clients = client.db('mirabelle').collection('clients');
-			const insertClient = await clients.insertOne({id, name});
-			console.log(insertClient.insertedId);
-			const getClientsCount = await clients.countDocuments();
-			console.log(getClientsCount);
-		})()
-	})
-}
 
 addClient(5, 'test');
 
