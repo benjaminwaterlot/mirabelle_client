@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-toolbar app class="white elevation-3">
+    <v-toolbar app class="white elevation-3" justify-start>
       <v-img src="./logo.png" max-height="70%" contain/>
       <!-- <v-toolbar-title class="headline text-uppercase">
         <span>Vuetify</span>

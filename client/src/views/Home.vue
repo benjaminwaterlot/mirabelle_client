@@ -1,28 +1,28 @@
 <template>
-  <v-container>
+  <v-container fluid pa-0>
     <v-img src="./home_carousel.jpg"/>
     <div style="background-color: white">
       <v-img src="./white_separator_1.png" height="60px" style="top: -30px"/>
       <v-container>
-        <h1>
+        <h1 class="font-weight-medium">
           Nos supers
-          <span class="primary--text">paniers bio</span>
+          <span class="primary--text" style="font-family:'Love Ya Like A Sister'; font-size: 1.1em">paniers bio</span>
         </h1>
-		<v-container fluid grid-list-xl>
+		<v-container fluid grid-list-xl pa-0 mt-2>
 			<v-layout row wrap>
 				<v-flex v-for="panier in paniers" :key="panier.id" xs12 sm4>
 					<v-card>
 						<v-img :src="panier.image_src" aspect-ratio="1.3"></v-img>
 						<v-card-title primary-title>
 						<div>
-							<h3 class="headline mb-0">{{ panier.name }}</h3>
+							<h3 class="title mb-2">{{ panier.name }}</h3>
 							<div>{{ panier.description }}</div>
 						</div>
 						</v-card-title>
 
 						<v-card-actions>
-						<v-btn flat color="primary">Share</v-btn>
-						<v-btn flat>Explore</v-btn>
+						<v-btn flat color="primary">Ajouter au panier</v-btn>
+						<v-btn flat>En savoir plus</v-btn>
 						</v-card-actions>
 					</v-card>
 				</v-flex>
@@ -60,11 +60,4 @@ export default {
 	};
   }
 };
-//   import HelloWorld from '../components/HelloWorld'
-
-//   export default {
-//     components: {
-//       HelloWorld
-//     }
-//   }
 </script>
