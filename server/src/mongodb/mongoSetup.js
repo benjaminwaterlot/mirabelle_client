@@ -1,4 +1,21 @@
-const MongoClient = require('mongodb').MongoClient;
+const MongoClient = require('mongodb').MongoClient
 
-const mongoUri = 'mongodb+srv://benjamin:benjamin@mirabelle-tpfpe.gcp.mongodb.net/test?retryWrites=true';
-module.exports = new MongoClient(mongoUri, { useNewUrlParser: true });
+let DB;
+let CUSTOMERS;
+const URL = 'mongodb+srv://benjamin:benjamin@mirabelle-tpfpe.gcp.mongodb.net/?retryWrites=true';
+
+const connectToMongo = () => {
+	if (DB) return Promise.resolve(DB)
+	console.warn("Opening new connection");
+	return MongoClient.connect(URL)
+		.then(client => {
+			DB = client.db('mirabelle');
+			initialize();
+		})
+}
+
+const initialize = () => {
+	CUSTOMERS = DB.collection('clients');
+}
+
+export { connectToMongo, DB, CUSTOMERS };

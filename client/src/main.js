@@ -1,4 +1,6 @@
 import Vue from 'vue'
+import './plugins/vuetify'
+import Vuetify from 'vuetify'
 import VueApollo from 'vue-apollo'
 import App from './App.vue'
 import router from './router'
@@ -13,6 +15,18 @@ Vue.use(VueApollo)
 
 const apolloProvider = new VueApollo({
 	defaultClient: apolloClient,
+})
+
+Vue.use(Vuetify, {
+	theme: {
+		primary: '#719125',
+		secondary: '#b0bec5',
+		accent: '#8c9eff',
+		error: '#b71c1c',
+		info: '#2196F3',
+		success: '#4CAF50',
+		warning: '#FFC107',
+	}
 })
 
 new Vue({

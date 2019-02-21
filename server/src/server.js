@@ -1,22 +1,8 @@
 const express = require('express');
-const mongoClient = require('./mongodb/mongoSetup')
-const addClient = require('./mongodb/customers').addClient
+import { connectToMongo } from './mongodb/mongoSetup'
+import { addCustomer } from './mongodb/customers'
 
 const { ApolloServer, gql } = require('apollo-server-express');
-
-mongoClient.connect(err => {
-	console.log("Database connected");
-	if (err)
-		throw err;
-	mongoClient.db('mirabelle').collection('clients').find().toArray(function (err, result) {
-		if (err) {
-			throw err;
-		}
-		console.log(result);
-	});
-});
-
-addClient(5, 'test');
 
 const typeDefs = gql`
     type Client {
@@ -89,4 +75,9 @@ const app = express();
 const server = new ApolloServer({ typeDefs, resolvers });
 server.applyMiddleware({ app });
 
-app.listen({ port: 4000 }, () => console.log('Server ready ! 🚀'));
+connectToMongo().then(
+	() => {
+		addCustomer(5, "couille");
+		app.listen({ port: 4000 }, () => console.log('Server ready ! 🚀'))
+	}
+)

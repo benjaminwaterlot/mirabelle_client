@@ -1,25 +1,24 @@
-const mongoClient = require('./mongoSetup')
+import { CUSTOMERS } from './mongoSetup'
 
-module.exports.addClient = (id, name) => {
-	mongoClient.connect(err => {
-		if (err) throw err;
-		(async () => {
-			const customers = mongoClient.db('mirabelle').collection('clients');
-			const insertClient = await customers.insertOne({id, name});
-			console.log(insertClient.insertedId);
-			const getClientsCount = await customers.countDocuments();
-			console.log(getClientsCount);
-		})()
-	})
+export const addCustomer = async (id, name) => {
+	const insertClient = await CUSTOMERS.insertOne({id, name});
+	console.log(`Inserted new customer : ${insertClient.insertedId}`);
+	console.log(`Current customer count : ${await CUSTOMERS.countDocuments()}`);
 }
 
-module.exports.clearCustomers = () => {
-	mongoClient.connect(err => {
-		if (err) throw err;
-		(async () => {
-			const customers = mongoClient.db('mirabelle').collection('clients');
-			// const clearCustomers = await customers.remo;
-			console.log(getClientsCount);
-		})()
-	})
-}
+// export const clearCustomers = async () => {
+// 	await Connection.db.collection('clients')
+// }
+
+// export async function clearCustomers ()
+
+// module.exports.clearCustomers = () => {
+// 	mongoClient.connect(err => {
+// 		if (err) throw err;
+// 		(async () => {
+// 			const customers = mongoClient.db('mirabelle').collection('clients');
+// 			// const clearCustomers = await customers.remo;
+// 			console.log(getClientsCount);
+// 		})()
+// 	})
+// }

@@ -19,8 +19,8 @@ export default {
 		query: gql`
 		{
 			clients {
-			name
-			id
+				name
+				id
 			}
 		}
 		`,
