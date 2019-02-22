@@ -11,8 +11,7 @@
 	<v-card-actions>
 		<v-flex>
 			<v-btn flat color="primary">
-				<v-icon small left>shopping_basket</v-icon>
-				<span>Ajouter au panier</span>
+				Ajouter au panier
 			</v-btn>
 			<v-btn flat>En savoir plus</v-btn>
 		</v-flex>

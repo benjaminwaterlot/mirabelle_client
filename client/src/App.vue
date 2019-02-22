@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-toolbar app class="white elevation-2" prominent>
-      <!-- <v-img src="./logo.png" max-height="70%" contain/> -->
+     <v-img src="./logo.png" max-height="70%" contain/>
       <v-toolbar-title class="headline text-uppercase">
         <span>Basilic</span>
         <span class="font-weight-light"> et Mirabelle</span>
