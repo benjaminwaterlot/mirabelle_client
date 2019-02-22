@@ -1,5 +1,6 @@
 const express = require('express');
 import { connectToMongo } from './mongodb/mongoSetup'
+import getProducts from './mongodb/getProducts'
 import { addCustomer } from './mongodb/customers'
 
 const { ApolloServer, gql } = require('apollo-server-express');
@@ -10,10 +11,18 @@ const typeDefs = gql`
 		name: String
 		email: String
     }
+	type Product {
+		name: String
+		description: String
+		image_src: String
+		origin: String
+		price: Int
+	}
     type Query {
         clients: [Client]
 		client(id: Int, name: String): Client
 		helloWorld: String
+		getProducts: [Product]
     }
     type Mutation {
         addCustomer(id: Int, name: String): Client
@@ -45,6 +54,9 @@ const resolvers = {
 			if (name) return customers.find((customer) => customer.name == name);
 		},
 		helloWorld: () => "Hello World!",
+		getProducts: () => {
+			return getProducts();
+		}
 	},
 	Mutation: {
 		addCustomer: (parent, { name }) => {
@@ -78,6 +90,7 @@ server.applyMiddleware({ app });
 connectToMongo().then(
 	() => {
 		addCustomer(5, "couille");
+		getProducts()
 		app.listen({ port: 4000 }, () => console.log('Server ready ! 🚀'))
 	}
 )

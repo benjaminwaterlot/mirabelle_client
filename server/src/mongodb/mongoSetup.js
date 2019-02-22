@@ -2,6 +2,7 @@ const MongoClient = require('mongodb').MongoClient
 
 let DB;
 let CUSTOMERS;
+let PRODUCTS;
 const URL = 'mongodb+srv://benjamin:benjamin@mirabelle-tpfpe.gcp.mongodb.net/?retryWrites=true';
 
 const connectToMongo = () => {
@@ -16,6 +17,7 @@ const connectToMongo = () => {
 
 const initialize = () => {
 	CUSTOMERS = DB.collection('clients');
+	PRODUCTS = DB.collection('products');
 }
 
-export { connectToMongo, DB, CUSTOMERS };
+export { connectToMongo, DB, CUSTOMERS, PRODUCTS };
