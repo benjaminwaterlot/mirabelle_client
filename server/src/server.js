@@ -1,50 +1,32 @@
 const express = require('express');
-const lodash = require('lodash');
+const _ = require('lodash');
+const { ApolloServer, gql } = require('apollo-server-express');
 
 import { connectToMongo } from './mongodb/mongoSetup';
-import getProducts from './mongodb/getProducts';
-// import { addCustomer } from './mongodb/customers';
 import resolvers from './resolvers/resolvers';
 import schemas from './resolvers/schemas';
 
-const { ApolloServer, gql } = require('apollo-server-express');
-
-const typeDefs = gql`
-	type Client {
-		id: Int
-		name: String
-		email: String
-	}
+const globalTypes = gql`
 	type Query {
-		clients: [Client]
-		client(id: Int, name: String): Client
-		helloWorld: String
-		getProducts: [Product]
-	}
-	type Mutation {
-		addCustomer(id: Int, name: String): Client
-		deleteCustomer(id: Int, name: String): Client
+		test: String
 	}
 `;
 
 const globalResolvers = {
 	Query: {
-		getProducts: () => {
-			return getProducts();
-		},
+		test: () => null,
 	},
-	Mutation: {},
 };
+
+const server = new ApolloServer({
+	typeDefs: [globalTypes, schemas],
+	resolvers: _.merge(globalResolvers, resolvers),
+});
 
 const app = express();
 
-const server = new ApolloServer({
-	typeDefs: [typeDefs, schemas],
-	resolvers: lodash.merge(globalResolvers),
-});
 server.applyMiddleware({ app });
 
 connectToMongo().then(() => {
-	getProducts();
 	app.listen({ port: 4000 }, () => console.log('Server ready ! 🚀'));
 });

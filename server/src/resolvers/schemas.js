@@ -1,5 +1,5 @@
-import { productSchema } from './products/products';
+import { productSchemas } from './products/products';
 
 export default {
-	...productSchema,
+	...productSchemas,
 };

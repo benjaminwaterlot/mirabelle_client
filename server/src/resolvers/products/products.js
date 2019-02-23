@@ -1,6 +1,8 @@
 const { gql } = require('apollo-server-express');
 
-const productSchema = gql`
+import getProducts from '../../mongodb/getProducts';
+
+const productSchemas = gql`
 	type Product {
 		name: String
 		description: String
@@ -8,6 +10,17 @@ const productSchema = gql`
 		origin: String
 		price: Int
 	}
+	extend type Query {
+		getProducts: [Product]
+	}
 `;
 
-export { productSchema };
+const productResolvers = {
+	Query: {
+		getProducts: () => {
+			return getProducts();
+		},
+	},
+};
+
+export { productSchemas, productResolvers };

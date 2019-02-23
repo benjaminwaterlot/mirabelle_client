@@ -2,11 +2,11 @@
 v-app
 	Navbar
 	v-content.light
-		Home
+		router-view
 </template>
 
 <script>
-import Home from "./views/Home";
+import Home from "./views/Home/Home";
 import Navbar from "@/components/organisms/Navbar";
 
 export default {
@@ -22,3 +22,9 @@ export default {
 	}
 };
 </script>
+
+<style lang="stylus">
+.love-ya {
+	font-family: 'Love Ya Like A Sister';
+}
+</style>

@@ -1,13 +1,21 @@
 <template lang="pug">
-v-card.depressed
-	v-img(:src='image_src' aspect-ratio="1.3")
-	v-card-title(primary-title)
-		h3.title.mb-2 {{ name }}
-		p.mb-0 {{ description }}
-	v-card-actions
-		v-flex
-			v-btn(flat color="primary") Ajouter au panier
-			v-btn(flat) En savoir plus
+v-hover
+	v-card.depressed.card(to="/" slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 2}`")
+		v-img(:src='image_src' aspect-ratio="1.3")
+		v-card-text(style="position: relative")
+			v-btn.elevation-2(absolute color="primary lighten-1" fab medium right top)
+				v-icon shopping_basket
+			v-card-title
+				h3.mb-2.primary--text.card-title {{ name }}
+				p.mb-0 {{ description }}
+			v-card-actions
+				v-layout.justify-space-around(row wrap)
+					v-btn.darkaccent--text.text--lighten-1(flat)
+						v-icon.mr-2(left) place
+						span {{ origin }}
+					v-btn.primary--text(flat)
+						v-icon.mr-2(left) search
+						span En savoir plus
 </template>
 
 <script>
@@ -24,4 +32,13 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+.card-title {
+	font-weight: 400;
+	font-size: 1.8em;
+	font-family: 'Love Ya Like A Sister';
+}
+
+.card {
+	border-radius: 0.5em;
+}
 </style>

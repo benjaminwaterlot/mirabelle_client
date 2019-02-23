@@ -1,10 +1,10 @@
 <template lang="pug">
 v-container(fluid pa-0)
-	v-img(src="./home_carousel.jpg")
+	HomeCarousel
 	div(style="background-color: white")
 		v-img.paper-separator(src="./white_separator_1.png" height="60px")
 		v-container
-			h1.font-weight-medium
+			h1.mb-4.font-weight-medium
 				span Nos supers 
 				span.primary--text paniers bio
 			v-container(grid-list-xl pa-0 mt-2)
@@ -12,11 +12,14 @@ v-container(fluid pa-0)
 					v-flex(v-for="panier in getProducts" :key="panier.id" xs12 md6 lg4 xl3)
 						ProductCard(v-bind="panier")
 		v-img.paper-separator.reverse(src="./white_separator_1.png" height="60px")
+	HowItWorks
 </template>
 
 <script>
 import gql from "graphql-tag";
 import ProductCard from "@/components/molecules/ProductCard";
+import HowItWorks from "./HowItWorks";
+import HomeCarousel from "./HomeCarousel";
 
 export default {
 	name: "Home",
@@ -24,7 +27,9 @@ export default {
 		return {};
 	},
 	components: {
-		ProductCard
+		ProductCard,
+		HowItWorks,
+		HomeCarousel
 	},
 	apollo: {
 		getProducts: {
