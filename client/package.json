@@ -10,6 +10,8 @@
     "apollo-boost": "^0.1.28",
     "graphql": "^14.1.1",
     "graphql-tag": "^2.10.1",
+    "pug": "^2.0.3",
+    "pug-plain-loader": "^1.0.0",
     "vue": "^2.5.22",
     "vue-apollo": "^3.0.0-beta.28",
     "vue-router": "^3.0.1",

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-	"installs": "npm install && npm --prefix ./client install && npm --prefix ./server install",
+	"installs": "npm install && npm --prefix ./client install && npm --prefix ./server install"
   },
   "repository": {
     "type": "git",

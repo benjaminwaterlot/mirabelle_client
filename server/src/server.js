@@ -1,73 +1,50 @@
 const express = require('express');
-import { connectToMongo } from './mongodb/mongoSetup'
-import getProducts from './mongodb/getProducts'
-import { addCustomer } from './mongodb/customers'
+const lodash = require('lodash');
+
+import { connectToMongo } from './mongodb/mongoSetup';
+import getProducts from './mongodb/getProducts';
+// import { addCustomer } from './mongodb/customers';
+import resolvers from './resolvers/resolvers';
+import schemas from './resolvers/schemas';
 
 const { ApolloServer, gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-    type Client {
-        id: Int
+	type Client {
+		id: Int
 		name: String
 		email: String
-    }
-	type Product {
-		name: String
-		description: String
-		image_src: String
-		origin: String
-		price: Int
 	}
-    type Query {
-        clients: [Client]
+	type Query {
+		clients: [Client]
 		client(id: Int, name: String): Client
 		helloWorld: String
 		getProducts: [Product]
-    }
-    type Mutation {
-        addCustomer(id: Int, name: String): Client
-        deleteCustomer(id: Int, name: String): Client
-    }
+	}
+	type Mutation {
+		addCustomer(id: Int, name: String): Client
+		deleteCustomer(id: Int, name: String): Client
+	}
 `;
 
-const resolvers = {
+const globalResolvers = {
 	Query: {
 		getProducts: () => {
 			return getProducts();
-		}
+		},
 	},
-	Mutation: {
-	// 	addCustomer: (parent, { name }) => {
-	// 		const last_id = customers[customers.length - 1].id
-	// 		customers = [...customers, { id: last_id + 1, name: name }];
-	// 		return customers[customers.length - 1];
-	// 	},
-	// 	deleteCustomer: (parent, { id, name }) => {
-	// 		let removed
-	// 		console.log("parent is " + parent);
-	// 		if (id && name) return Error("CA VA PAS");
-	// 		if (id) {
-	// 			removed = customers.find(customer => customer.id === id);
-	// 			customers = customers.filter(customer => customer.id !== id);
-	// 		}
-	// 		else if (name) {
-	// 			removed = customers.find(customer => customer.name === name);
-	// 			customers = customers.filter(customer => customer.name !== name);
-	// 		}
-	// 		else console.error("WOAOUH");
-	// 		return removed;
-	// 	}
-	}
+	Mutation: {},
 };
 
 const app = express();
 
-const server = new ApolloServer({ typeDefs, resolvers });
+const server = new ApolloServer({
+	typeDefs: [typeDefs, schemas],
+	resolvers: lodash.merge(globalResolvers),
+});
 server.applyMiddleware({ app });
 
-connectToMongo().then(
-	() => {
-		getProducts()
-		app.listen({ port: 4000 }, () => console.log('Server ready ! 🚀'))
-	}
-)
+connectToMongo().then(() => {
+	getProducts();
+	app.listen({ port: 4000 }, () => console.log('Server ready ! 🚀'));
+});

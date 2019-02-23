@@ -1,5 +1,6 @@
-import { PRODUCTS, DB } from './mongoSetup'
+import { PRODUCTS } from './mongoSetup'
 
-export default async () => {
-	return await DB.collection('products').find({}).toArray()
+export default () => {
+	console.log("Querying mongodb for products");
+	return PRODUCTS.find({}).toArray();
 }
