@@ -9,7 +9,7 @@ v-hover
 				h3.mb-2.primary--text.card-title {{ name }}
 				p.mb-0 {{ description }}
 			v-card-actions
-				v-layout.justify-space-between(row wrap)
+				v-layout.justify-center(row wrap)
 					v-btn.caption(flat)
 						v-icon.mr-2(left) place
 						span {{ origin }}

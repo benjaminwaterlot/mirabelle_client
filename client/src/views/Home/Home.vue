@@ -4,12 +4,12 @@ v-container(fluid pa-0)
 	div(style="background-color: white")
 		v-img.paper-separator(src="./white_separator_1.png" height="60px")
 		v-container
-			h1.mb-4.font-weight-medium
+			h1.mb-5.display-1.font-weight-medium
 				span Nos supers 
 				span.primary--text paniers bio
 			v-container(grid-list-xl pa-0 mt-2)
 				v-layout(row wrap)
-					v-flex(v-for="panier in getProducts" :key="panier.id" xs12 sm6 md4 lg3 xl3)
+					v-flex(v-for="panier in getProducts" :key="panier.id" xs12 sm6 md4 lg4 xl3)
 						ProductCard(v-bind="panier")
 		v-img.paper-separator.reverse(src="./white_separator_1.png" height="60px")
 	HowItWorks

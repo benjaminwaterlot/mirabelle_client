@@ -15,6 +15,18 @@ const productSchemas = gql`
 	}
 `;
 
+const productValidator = {
+	$jsonSchema: {
+		bsonType: 'object',
+		required: [],
+		properties: {
+			name: { bsonType: ['string'] },
+			description: { bsonType: ['string'] },
+			name: { bsonType: ['string'] },
+		},
+	},
+};
+
 const productResolvers = {
 	Query: {
 		getProducts: () => {
