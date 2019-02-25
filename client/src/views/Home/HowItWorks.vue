@@ -11,7 +11,7 @@ v-container.py-5
 						p.step-head.my-0.primary--text Etape
 						p.step-num.primary--text.font-weight-medium {{ step.id + 1 }}
 					v-img(:src="step.image_src" max-width='80%')
-				p.body-2 {{step.heading}}
+				p.body-2.font-weight-bold {{step.heading}}
 				p.body-1 {{step.description}}
 				router-link(:to="{ name: step.link_route }") {{step.link_label}}
 </template>

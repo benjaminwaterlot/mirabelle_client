@@ -1,19 +1,19 @@
 <template lang="pug">
 v-hover
 	v-card.depressed.card(to="/" slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 2}`")
-		v-img(:src='image_src' aspect-ratio="1.3")
-		v-card-text(style="position: relative")
+		v-img(position='center center' :src='image_src' aspect-ratio="1.3")
+		v-card-text.px-2(style="position: relative")
 			v-btn.elevation-2(absolute color="primary lighten-1" fab medium right top)
 				v-icon shopping_basket
 			v-card-title
 				h3.mb-2.primary--text.card-title {{ name }}
 				p.mb-0 {{ description }}
 			v-card-actions
-				v-layout.justify-space-around(row wrap)
-					v-btn.darkaccent--text.text--lighten-1(flat)
+				v-layout.justify-space-between(row wrap)
+					v-btn.caption(flat)
 						v-icon.mr-2(left) place
 						span {{ origin }}
-					v-btn.primary--text(flat)
+					v-btn.caption.primary--text(flat)
 						v-icon.mr-2(left) search
 						span En savoir plus
 </template>

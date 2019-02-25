@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import './plugins/overrides.styl';
 import './plugins/vuetify';
 import Vuetify from 'vuetify';
 import VueApollo from 'vue-apollo';
