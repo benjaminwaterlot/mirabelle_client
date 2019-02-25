@@ -3,11 +3,11 @@ v-toolbar.white.elevation-2(app prominent)
 	v-img(src="./logo.png" max-height="70%" contain)
 	v-spacer(grow)
 	v-toolbar-items
-		v-btn.darkaccent--text.link(flat v-for="item in items" @click="item.dropdownOpen = !item.dropdownOpen") {{ item.label }}
-			//- v-navigation-drawer(clipped temporary v-model="item.dropdownOpen")
-			//- 	v-list
-			//- 		v-list-tile(v-for="dropItem in item.dropdown" :key="dropItem.label")
-			//- 			v-btn(flat) {{ dropItem.label }}
+		v-menu(flat v-for="item in items" bottom offset-y open-on-hover)
+			v-btn.darkaccent--text.link(slot="activator" flat) {{ item.label }}
+			v-list(v-if="item.dropdown")
+				v-list-tile(@click="" v-for="dropdown in item.dropdown" :key="dropdown.label")
+					v-list-tile-title {{ dropdown.label }}
 	v-divider.ml-2(vertical)
 	v-btn(flat color="primary")
 		v-icon(left) account_circle
@@ -22,7 +22,20 @@ export default {
 			items: [
 				{
 					label: "Nos supers paniers",
-					dropdown: null,
+					dropdown: [
+						{
+							label: "Le super mix",
+							link: "/"
+						},
+						{
+							label: "Le super fruitier",
+							link: "/"
+						},
+						{
+							label: "Le super légumier",
+							link: "/"
+						}
+					],
 					dropdownOpen: false,
 					link: "/"
 				},
