@@ -8,12 +8,8 @@ const schema = {
 	bsonType: 'object',
 	required: ['_id', 'identity'],
 	properties: {
-		_id: {
-			bsonType: 'objectId',
-		},
-		shippingGroup: {
-			bsonType: 'string',
-		},
+		_id: { bsonType: 'objectId' },
+		shippingGroup: { bsonType: 'string' },
 		identity: {
 			bsonType: 'object',
 			required: ['firstName', 'surName', 'email', 'phone'],
