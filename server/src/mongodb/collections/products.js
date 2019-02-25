@@ -21,9 +21,9 @@ const schema = {
 			type: 'string',
 		},
 		price: {
-			// bsonType: 'long',
-			// minimum: 0.0,
-			// maximum: 100000.0,
+			bsonType: 'long',
+			minimum: 0.0,
+			maximum: 100000.0,
 			description:
 				'The price of the product. Is an integer, expressed in cents.',
 		},

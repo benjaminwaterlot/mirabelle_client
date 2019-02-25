@@ -30,12 +30,15 @@ const app = express();
 server.applyMiddleware({ app });
 
 connectToMongo().then(async () => {
+	console.debug('\nUpdating validators...');
 	await runValidators();
+	// SHOULD REALLY MAKE SURE THAT THE VALIDATORS ARE ENDED BEFORE STARTING THE TESTS (With promises)
 	await testDB();
-	app.listen({ port: 4000 }, () => console.log('Server ready ! 🚀'));
+	app.listen({ port: 4000 }, () => console.log('\nServer ready ! 🚀'));
 });
 
 const testDB = async () => {
+	console.debug('\nRunning tests...');
 	await CUSTOMERS.insertOne(customerExample)
 		.then(val => console.log('✓ Insertion test in [customers]: Success'))
 		.catch(err => console.log('✗ Insertion test in [customers]: Error'));
