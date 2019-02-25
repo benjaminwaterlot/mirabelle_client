@@ -2,33 +2,29 @@ import { DB } from '../mongoSetup';
 import resetValidators from './resetValidators';
 import checkForExistence from './checkForExistence';
 
-const collName = 'products';
+const collName = 'materials';
 
 const schema = {
 	bsonType: 'object',
-	required: ['label', 'description', 'origin', 'ref', 'price'],
+	required: ['_id', 'description', 'label', 'ref', 'origin', 'bio'],
 	properties: {
 		_id: {
 			bsonType: 'objectId',
 		},
+		label: {
+			bsonType: 'string',
+		},
 		description: {
 			bsonType: 'string',
 		},
-		label: {
+		ref: {
 			bsonType: 'string',
 		},
 		origin: {
 			bsonType: 'string',
 		},
-		price: {
-			bsonType: 'int',
-			minimum: 0.0,
-			maximum: 100000.0,
-			description:
-				'The price of the product. Is an integer, expressed in cents.',
-		},
-		ref: {
-			bsonType: 'string',
+		bio: {
+			bsonType: 'bool',
 		},
 	},
 };

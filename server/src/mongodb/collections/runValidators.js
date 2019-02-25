@@ -1,7 +1,9 @@
-import products from './products';
-import customers from './customers';
+import productValidators from './products';
+import customerValidators from './customers';
+import materialValidators from './materials';
 
 export default async () => {
-	await products();
-	await customers();
+	await productValidators();
+	await customerValidators();
+	await materialValidators();
 };

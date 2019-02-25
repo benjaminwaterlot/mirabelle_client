@@ -3,7 +3,7 @@ v-toolbar.white.elevation-2(app prominent)
 	v-img(src="./logo.png" max-height="70%" contain)
 	v-spacer(grow)
 	v-toolbar-items
-		v-menu(flat v-for="item in items" bottom offset-y open-on-hover)
+		v-menu(flat v-for="item in items" :key="item.label" bottom offset-y open-on-hover)
 			v-btn.darkaccent--text.link(slot="activator" flat) {{ item.label }}
 			v-list(v-if="item.dropdown")
 				v-list-tile(@click="" v-for="dropdown in item.dropdown" :key="dropdown.label")
