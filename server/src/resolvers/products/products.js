@@ -17,12 +17,12 @@ const productSchemas = gql`
 
 const productValidator = {
 	$jsonSchema: {
-		bsonType: 'object',
+		type: 'object',
 		required: [],
 		properties: {
-			name: { bsonType: ['string'] },
-			description: { bsonType: ['string'] },
-			name: { bsonType: ['string'] },
+			name: { type: ['string'] },
+			description: { type: ['string'] },
+			name: { type: ['string'] },
 		},
 	},
 };

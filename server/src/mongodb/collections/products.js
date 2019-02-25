@@ -5,30 +5,30 @@ import checkForExistence from './checkForExistence';
 const collName = 'products';
 
 const schema = {
-	bsonType: 'object',
+	type: 'object',
 	required: ['label', 'description', 'origin', 'ref', 'price'],
 	properties: {
 		_id: {
 			bsonType: 'objectId',
 		},
 		description: {
-			bsonType: 'string',
+			type: 'string',
 		},
 		label: {
-			bsonType: 'string',
+			type: 'string',
 		},
 		origin: {
-			bsonType: 'string',
+			type: 'string',
 		},
 		price: {
-			bsonType: 'int',
-			minimum: 0.0,
-			maximum: 100000.0,
+			// bsonType: 'long',
+			// minimum: 0.0,
+			// maximum: 100000.0,
 			description:
 				'The price of the product. Is an integer, expressed in cents.',
 		},
 		ref: {
-			bsonType: 'string',
+			type: 'string',
 		},
 	},
 };

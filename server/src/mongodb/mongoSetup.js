@@ -16,7 +16,7 @@ const connectToMongo = () => {
 };
 
 const initialize = () => {
-	CUSTOMERS = DB.collection('clients');
+	CUSTOMERS = DB.collection('customers');
 	PRODUCTS = DB.collection('products');
 };
 

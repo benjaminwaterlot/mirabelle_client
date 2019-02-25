@@ -5,26 +5,26 @@ import checkForExistence from './checkForExistence';
 const collName = 'materials';
 
 const schema = {
-	bsonType: 'object',
+	type: 'object',
 	required: ['_id', 'description', 'label', 'ref', 'origin', 'bio'],
 	properties: {
 		_id: {
 			bsonType: 'objectId',
 		},
 		label: {
-			bsonType: 'string',
+			type: 'string',
 		},
 		description: {
-			bsonType: 'string',
+			type: 'string',
 		},
 		ref: {
-			bsonType: 'string',
+			type: 'string',
 		},
 		origin: {
-			bsonType: 'string',
+			type: 'string',
 		},
 		bio: {
-			bsonType: 'bool',
+			type: 'boolean',
 		},
 	},
 };
