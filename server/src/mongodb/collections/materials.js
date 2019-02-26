@@ -1,4 +1,4 @@
-import { DB } from '../mongoSetup';
+import { DB, MATERIALS } from '../mongoSetup';
 import resetValidators from './resetValidators';
 import checkForExistence from './checkForExistence';
 
@@ -30,21 +30,17 @@ const schema = {
 };
 
 export default async () => {
-	return Promise.all([
-		await checkForExistence(collName),
-		await resetValidators(collName),
-		await DB.command(
-			{
-				collMod: collName,
-				validator: {
-					$jsonSchema: schema,
-				},
-				validationLevel: 'moderate',
-			},
-			(err, res) => {
-				if (err) console.error(err);
-				else console.debug(`✓ Validated collection [${collName}].`);
-			},
-		),
-	]);
+	await checkForExistence(collName);
+	await resetValidators(collName);
+	await DB.command({
+		collMod: collName,
+		validator: {
+			$jsonSchema: schema,
+		},
+		validationLevel: 'moderate',
+	});
+	const validationErrors = await MATERIALS.find({
+		$nor: [{ $jsonSchema: schema }],
+	}).toArray();
+	console.debug(`✓ Validated collection [${collName}].`);
 };

@@ -41,23 +41,14 @@ const schema = {
 };
 
 export default async () => {
-	return Promise.all([
-		await checkForExistence(collName),
-		await resetValidators(collName),
-		await DB.command(
-			{
-				collMod: collName,
-				validator: {
-					$jsonSchema: schema,
-				},
-				validationLevel: 'moderate',
-			},
-			(err, res) => {
-				if (err) console.error(err);
-				else console.debug(`✓ Validated collection [${collName}].`);
-			},
-		),
-	]);
+	await checkForExistence(collName);
+	await resetValidators(collName);
+	await DB.command({
+		collMod: collName,
+		validator: { $jsonSchema: schema },
+		validationLevel: 'moderate',
+	});
+	console.debug(`✓ Validated collection [${collName}].`);
 };
 
 export const customerExample = {

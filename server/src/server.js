@@ -29,30 +29,27 @@ const app = express();
 
 server.applyMiddleware({ app });
 
-connectToMongo().then(async () => {
+(async () => {
+	await connectToMongo();
 	console.debug('\nUpdating validators...');
-	await runValidators().then(val => console.log('DONE VALIDATORS'));
-	console.log('COUCOU');
-	// SHOULD REALLY MAKE SURE THAT THE VALIDATORS ARE ENDED BEFORE STARTING THE TESTS (With promises)
+	await runValidators();
+	console.debug('\nRunning tests...');
 	await testDB();
 	app.listen({ port: 4000 }, () => console.log('\nServer ready ! 🚀'));
-});
+})();
 
 const testDB = async () => {
-	console.debug('\nRunning tests...');
-	return Promise.all([
-		await CUSTOMERS.insertOne(customerExample)
-			.then(val =>
-				console.log('✓ Insertion test in [customers]: Success'),
-			)
-			.catch(err =>
-				console.log('✗ Insertion test in [customers]: Error'),
-			),
+	await CUSTOMERS.insertOne(customerExample)
+		.then(() => console.log('✓ Insertion test in [customers]: Success'))
+		.catch(err => console.error('✗ Insertion test in [customers]: ', err));
 
-		await CUSTOMERS.deleteOne({
-			'identity.email': customerExample.identity.email,
-		})
-			.then(val => console.log('✓ Removal test in [customers]: Success'))
-			.catch(err => console.log('✗ Removal test in [customers]: Error')),
-	]);
+	const customerEmail = customerExample.identity.email;
+	await CUSTOMERS.deleteOne({ 'identity.email': customerEmail })
+		.then(() => console.log('✓ Removal test in [customers]: Success'))
+		.catch(err => console.error('✗ Removal test in [customers]: ', err));
 };
+
+process.on('unhandledRejection', reason => {
+	console.error('Unhandled promise rejection:', reason);
+	process.exit(1);
+});
