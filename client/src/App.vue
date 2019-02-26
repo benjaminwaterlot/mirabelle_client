@@ -8,6 +8,7 @@ v-app
 <script>
 import Home from "./views/Home/Home";
 import Navbar from "@/components/organisms/Navbar";
+import auth from "@/auth/AuthService";
 
 export default {
 	name: "App",
@@ -17,8 +18,12 @@ export default {
 	},
 	data() {
 		return {
-			//
+			isAuthenticated: null
 		};
+	},
+	mounted() {
+		this.isAuthenticated = auth.isAuthenticated();
+		setTimeout(() => console.log(auth.isAuthenticated()), 2000);
 	}
 };
 </script>
