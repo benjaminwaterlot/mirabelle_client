@@ -3,7 +3,9 @@ import customerValidators from './customers';
 import materialValidators from './materials';
 
 export default async () => {
-	await productValidators();
-	await customerValidators();
-	await materialValidators();
+	return Promise.all([
+		await productValidators(),
+		await customerValidators(),
+		await materialValidators(),
+	]);
 };

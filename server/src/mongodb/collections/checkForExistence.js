@@ -13,5 +13,7 @@ export default async nameToCheck => {
 					`✗ Error : creating collection ${nameToCheck} FAILED.`,
 				),
 			);
+		return createdCollection;
 	}
+	return true;
 };
