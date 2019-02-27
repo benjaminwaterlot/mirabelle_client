@@ -1,10 +1,10 @@
-const { gql } = require('apollo-server-express');
+import { PRODUCTS } from '../../mongodb/mongoSetup';
 
-import getProducts from '../../mongodb/getProducts';
+const { gql } = require('apollo-server-express');
 
 const productSchemas = gql`
 	type Product {
-		name: String
+		label: String
 		description: String
 		image_src: String
 		origin: String
@@ -15,23 +15,9 @@ const productSchemas = gql`
 	}
 `;
 
-const productValidator = {
-	$jsonSchema: {
-		type: 'object',
-		required: [],
-		properties: {
-			name: { type: ['string'] },
-			description: { type: ['string'] },
-			name: { type: ['string'] },
-		},
-	},
-};
-
 const productResolvers = {
 	Query: {
-		getProducts: () => {
-			return getProducts();
-		},
+		getProducts: () => PRODUCTS.find().toArray(),
 	},
 };
 

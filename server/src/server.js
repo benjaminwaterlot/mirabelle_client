@@ -7,6 +7,9 @@ import resolvers from './resolvers/resolvers';
 import schemas from './resolvers/schemas';
 import runValidators from './mongodb/collections/runValidators';
 import { customerExample } from './mongodb/collections/customers';
+import products, {
+	// productInsert
+} from './mongodb/collections/products';
 
 const globalTypes = gql`
 	type Query {
@@ -39,6 +42,14 @@ server.applyMiddleware({ app });
 })();
 
 const testDB = async () => {
+	const sampleProduct = {
+		label: "TestProduct",
+		description: "TestDescription",
+		origin: "TestCountry",
+		price: "42",
+		ref: 'TESTREF',
+	}
+	// await productInsert(sampleProduct)
 	await CUSTOMERS.insertOne(customerExample)
 		.then(() => console.log('✓ Insertion test in [customers]: Success'))
 		.catch(err => console.error('✗ Insertion test in [customers]: ', err));

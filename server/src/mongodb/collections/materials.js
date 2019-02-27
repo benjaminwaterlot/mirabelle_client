@@ -42,5 +42,10 @@ export default async () => {
 	const validationErrors = await MATERIALS.find({
 		$nor: [{ $jsonSchema: schema }],
 	}).toArray();
+	// if (validationErrors.length > 0)
+	// 	console.debug(
+	// 		`✗ These fields in collection ${collName} failed validation: \n`,
+	// 		validationErrors,
+	// 	);
 	console.debug(`✓ Validated collection [${collName}].`);
 };

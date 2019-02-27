@@ -36,7 +36,7 @@ export default {
 			query: gql`
 				{
 					getProducts {
-						name
+						label
 						description
 						price
 						origin
