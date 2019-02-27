@@ -1,9 +1,9 @@
-import { PRODUCTS } from '../../mongodb/mongoSetup';
+import { BUNDLES } from '../../mongodb/mongoSetup';
 
 const { gql } = require('apollo-server-express');
 
 const productSchemas = gql`
-	type Product {
+	type Bundle {
 		label: String
 		description_short: String
 		image_src: String
@@ -11,13 +11,13 @@ const productSchemas = gql`
 		price: Int
 	}
 	extend type Query {
-		getProducts: [Product]
+		getBundles: [Bundle]
 	}
 `;
 
 const productResolvers = {
 	Query: {
-		getProducts: () => PRODUCTS.find().toArray(),
+		getBundles: () => BUNDLES.find().toArray(),
 	},
 };
 

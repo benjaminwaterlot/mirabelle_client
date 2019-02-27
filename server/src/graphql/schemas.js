@@ -1,4 +1,4 @@
-import { productSchemas } from './products/products';
+import { productSchemas } from './bundles/bundles';
 
 export default {
 	...productSchemas,

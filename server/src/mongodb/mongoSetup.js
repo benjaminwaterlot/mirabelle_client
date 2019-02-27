@@ -2,14 +2,13 @@ const MongoClient = require('mongodb').MongoClient;
 
 let DB;
 let CUSTOMERS;
-let PRODUCTS;
-let MATERIALS;
+let BUNDLES;
+let PACKS;
 const URL =
 	'mongodb+srv://benjamin:benjamin@mirabelle-tpfpe.gcp.mongodb.net/?retryWrites=true';
 
 const connectToMongo = () => {
 	if (DB) return Promise.resolve(DB);
-	console.warn('Opening new connection');
 	return MongoClient.connect(URL).then(client => {
 		DB = client.db('mirabelle');
 		initialize();
@@ -18,8 +17,8 @@ const connectToMongo = () => {
 
 const initialize = () => {
 	CUSTOMERS = DB.collection('customers');
-	PRODUCTS = DB.collection('products');
-	MATERIALS = DB.collection('materials');
+	BUNDLES = DB.collection('bundles');
+	PACKS = DB.collection('packs');
 };
 
-export { connectToMongo, DB, CUSTOMERS, PRODUCTS, MATERIALS };
+export { connectToMongo, DB, CUSTOMERS, BUNDLES, PACKS };

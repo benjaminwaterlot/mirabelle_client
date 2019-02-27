@@ -1,4 +1,4 @@
-import { productResolvers } from './products/products';
+import { productResolvers } from './bundles/bundles';
 
 export default {
 	...productResolvers,

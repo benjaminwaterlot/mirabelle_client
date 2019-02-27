@@ -6,7 +6,8 @@ import { connectToMongo } from './mongodb/mongoSetup';
 import { globalResolvers, globalTypes } from './graphql/initialize';
 import resolvers from './graphql/resolvers';
 import schemas from './graphql/schemas';
-import testDB from './tests/testDB';
+import testSchemas from './tests/testSchemas';
+import createCollections from './mongodb/initialize/createCollections';
 
 const server = new ApolloServer({
 	typeDefs: [globalTypes, schemas],
@@ -18,10 +19,14 @@ const app = express();
 server.applyMiddleware({ app });
 
 (async () => {
+	console.debug('\n✪ Connecting to MongoDB...');
 	await connectToMongo();
-	console.debug('\nTesting schemas...');
-	await testDB();
-	app.listen({ port: 4000 }, () => console.log('\nServer ready ! 🚀'));
+	console.debug('\n✪ Initializing collections...');
+	await createCollections();
+	console.debug('\n✪ Testing schemas...');
+	await testSchemas();
+	console.debug('\n✪ Launching server...');
+	app.listen({ port: 4000 }, () => console.log('\n✪ Server ready ! 🚀'));
 })();
 
 process.on('unhandledRejection', reason => {
