@@ -1,23 +1,12 @@
 const express = require('express');
 const _ = require('lodash');
-const { ApolloServer, gql } = require('apollo-server-express');
+const { ApolloServer } = require('apollo-server-express');
 
 import { connectToMongo } from './mongodb/mongoSetup';
-import resolvers from './resolvers/resolvers';
-import schemas from './resolvers/schemas';
+import { globalResolvers, globalTypes } from './graphql/initialize';
+import resolvers from './graphql/resolvers';
+import schemas from './graphql/schemas';
 import testDB from './tests/testDB';
-
-const globalTypes = gql`
-	type Query {
-		test: String
-	}
-`;
-
-const globalResolvers = {
-	Query: {
-		test: () => null,
-	},
-};
 
 const server = new ApolloServer({
 	typeDefs: [globalTypes, schemas],
@@ -30,7 +19,7 @@ server.applyMiddleware({ app });
 
 (async () => {
 	await connectToMongo();
-	console.debug('\nUpdating validators...');
+	console.debug('\nTesting schemas...');
 	await testDB();
 	app.listen({ port: 4000 }, () => console.log('\nServer ready ! 🚀'));
 })();

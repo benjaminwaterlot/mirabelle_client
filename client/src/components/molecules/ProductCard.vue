@@ -7,7 +7,7 @@ v-hover
 				v-icon shopping_basket
 			v-card-title
 				h3.mb-2.primary--text.card-title {{ label }}
-				p.mb-0 {{ description }}
+				p.mb-0 {{ description_short }}
 			v-card-actions
 				v-layout.justify-center(row wrap)
 					v-btn.caption(flat)
@@ -23,7 +23,7 @@ export default {
 	name: "ProductCard",
 	props: {
 		label: String,
-		description: String,
+		description_short: String,
 		price: Number,
 		origin: String,
 		image_src: String

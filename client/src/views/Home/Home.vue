@@ -37,7 +37,7 @@ export default {
 				{
 					getProducts {
 						label
-						description
+						description_short
 						price
 						origin
 						image_src

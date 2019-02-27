@@ -2,9 +2,9 @@ const Ajv = require('ajv');
 
 const schema = {
 	type: 'object',
-	required: ['label', 'description', 'origin', 'ref', 'price'],
+	required: ['label', 'description_short', 'origin', 'ref', 'price'],
 	properties: {
-		description: { type: 'string' },
+		description_short: { type: 'string' },
 		label: { type: 'string' },
 		origin: { type: 'string' },
 		price: {
