@@ -6,7 +6,7 @@ v-hover
 			v-btn.elevation-2(absolute color="primary lighten-1" fab medium right top)
 				v-icon shopping_basket
 			v-card-title
-				h3.mb-2.primary--text.card-title {{ name }}
+				h3.mb-2.primary--text.card-title {{ label }}
 				p.mb-0 {{ description }}
 			v-card-actions
 				v-layout.justify-center(row wrap)
@@ -22,7 +22,7 @@ v-hover
 export default {
 	name: "ProductCard",
 	props: {
-		name: String,
+		label: String,
 		description: String,
 		price: Number,
 		origin: String,

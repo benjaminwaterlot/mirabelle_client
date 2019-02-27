@@ -2,14 +2,10 @@ const express = require('express');
 const _ = require('lodash');
 const { ApolloServer, gql } = require('apollo-server-express');
 
-import { connectToMongo, DB, CUSTOMERS } from './mongodb/mongoSetup';
+import { connectToMongo } from './mongodb/mongoSetup';
 import resolvers from './resolvers/resolvers';
 import schemas from './resolvers/schemas';
-import runValidators from './mongodb/collections/runValidators';
-import { customerExample } from './mongodb/collections/customers';
-import products, {
-	// productInsert
-} from './mongodb/collections/products';
+import testDB from './tests/testDB';
 
 const globalTypes = gql`
 	type Query {
@@ -35,30 +31,9 @@ server.applyMiddleware({ app });
 (async () => {
 	await connectToMongo();
 	console.debug('\nUpdating validators...');
-	await runValidators();
-	console.debug('\nRunning tests...');
 	await testDB();
 	app.listen({ port: 4000 }, () => console.log('\nServer ready ! 🚀'));
 })();
-
-const testDB = async () => {
-	const sampleProduct = {
-		label: "TestProduct",
-		description: "TestDescription",
-		origin: "TestCountry",
-		price: "42",
-		ref: 'TESTREF',
-	}
-	// await productInsert(sampleProduct)
-	await CUSTOMERS.insertOne(customerExample)
-		.then(() => console.log('✓ Insertion test in [customers]: Success'))
-		.catch(err => console.error('✗ Insertion test in [customers]: ', err));
-
-	const customerEmail = customerExample.identity.email;
-	await CUSTOMERS.deleteOne({ 'identity.email': customerEmail })
-		.then(() => console.log('✓ Removal test in [customers]: Success'))
-		.catch(err => console.error('✗ Removal test in [customers]: ', err));
-};
 
 process.on('unhandledRejection', reason => {
 	console.error('Unhandled promise rejection:', reason);
