@@ -49,20 +49,11 @@ class AuthService {
 	}
 
 	setSession(authResult) {
-		// this.accessToken = authResult.accessToken;
-		// this.idToken = authResult.idToken;
-		// this.expiresAt = authResult.expiresIn * 1000 + new Date().getTime();
+		this.accessToken = authResult.accessToken;
+		this.idToken = authResult.idToken;
+		this.expiresAt = authResult.expiresIn * 1000 + new Date().getTime();
 
-		this.authNotifier.emit('authChange', { authenticated: true });
-		localStorage.setItem('loggedIn', true);
-
-		// MY VERSION OF AUTHENTICATION THERE
-		localStorage.setItem('accessToken', authResult.accessToken);
-		localStorage.setItem('idToken', authResult.idToken);
-		localStorage.setItem(
-			'expiresAt',
-			authResult.expiresIn * 1000 + new Date().getTime(),
-		);
+		this.authNotifier.emit('authChange', true);
 		localStorage.setItem('loggedIn', true);
 	}
 
@@ -78,21 +69,16 @@ class AuthService {
 	}
 
 	logout() {
-		// Clear access token and ID token from local storage
-		// this.accessToken = null;
-		// this.idToken = null;
-		// this.expiresAt = null;
-
-		// this.userProfile = null;
+		this.accessToken = null;
+		this.idToken = null;
+		this.expiresAt = null;
 		this.authNotifier.emit('authChange', false);
-
 		localStorage.removeItem('loggedIn');
-		localStorage.removeItem('accessToken');
-		localStorage.removeItem('idToken');
-		localStorage.removeItem('expiresAt');
 
-		// navigate to the home route
-		router.replace('home');
+		this.auth0.logout({
+			returnTo: 'http://localhost:8080/home',
+			client_id: clientId,
+		});
 	}
 
 	getAuthenticatedFlag() {
@@ -100,25 +86,13 @@ class AuthService {
 	}
 
 	isAuthenticated() {
-		// return (
-		// 	new Date().getTime() < this.expiresAt &&
-		// 	this.getAuthenticatedFlag() === 'true'
-		// );
-		// MY VERSION OF AUTHENTICATION HERE
-		console.log(
-			'expires in :',
-			(
-				(Number(localStorage.getItem('expiresAt')) -
-					new Date().getTime()) /
-				1000 /
-				60
-			).toFixed(1) + ' minutes',
-		);
-		console.log('is loggedin :', this.getAuthenticatedFlag() === 'true');
-		return (
-			new Date().getTime() < localStorage.getItem('expiresAt') &&
-			this.getAuthenticatedFlag() === 'true'
-		);
+		const expiresAt = Number(this.expiresAt);
+		const timeRemaining = expiresAt - new Date().getTime();
+		const remainingMinutes = (timeRemaining / 60000).toFixed(1);
+
+		if (timeRemaining > 0)
+			console.log(`Login valid for ${remainingMinutes} minutes.`);
+		return timeRemaining > 0 && this.getAuthenticatedFlag() === 'true';
 	}
 }
 

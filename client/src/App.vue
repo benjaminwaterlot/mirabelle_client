@@ -23,7 +23,6 @@ export default {
 	},
 	mounted() {
 		this.isAuthenticated = auth.isAuthenticated();
-		setTimeout(() => console.log(auth.isAuthenticated()), 2000);
 	}
 };
 </script>

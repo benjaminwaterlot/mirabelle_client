@@ -25,22 +25,16 @@ v-toolbar.white.elevation-2(app prominent)
 <script>
 import auth from "@/auth/AuthService";
 
-// auth.authNotifier.on('authChange', emitted, )
-
 export default {
 	name: "Navbar",
 	methods: {
 		authenticate: function() {
-			console.log("Will login");
 			auth.login();
 			this.updateStatus();
 		},
 		logout: function() {
-			console.log("Will deconnect");
-			console.log("Before authenticated is : ", this.authenticated);
 			auth.logout();
 			this.updateStatus();
-			console.log("After authenticated is : ", this.authenticated);
 		},
 		getStatus: function() {
 			console.log("AUTHENTICATION STATUS: ", auth);
@@ -48,6 +42,7 @@ export default {
 		},
 		updateStatus: function(boolean) {
 			if (boolean === true) this.isAuthenticated = true;
+			else if (boolean === false) this.isAuthenticated = false;
 			else this.isAuthenticated = auth.isAuthenticated();
 		}
 	},
