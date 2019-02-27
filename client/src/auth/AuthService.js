@@ -3,25 +3,10 @@ import EventEmitter from 'eventemitter3';
 import router from './../router';
 import { clientId } from './creds';
 
-// class AuthService {
-// 	auth0 = new auth0.WebAuth({
-// 		domain: 'basilicetmirabelle.eu.auth0.com',
-// 		clientID: 'a6K3NZlBCo33nUEQUFtzgTObbrgdyX1W',
-// 		redirectUri: 'http://localhost:8080/login',
-// 		responseType: 'token id_token',
-// 		scope: 'openid',
-// 	});
-
-// 	login() {
-// 		this.auth0.authorize();
-// 	}
-// }
-
 class AuthService {
 	accessToken;
 	idToken;
 	expiresAt;
-	authenticated = this.isAuthenticated();
 	authNotifier = new EventEmitter();
 
 	auth0 = new auth0.WebAuth({
@@ -29,7 +14,7 @@ class AuthService {
 		clientID: clientId,
 		redirectUri: 'http://localhost:8080/login',
 		responseType: 'token id_token',
-		scope: 'openid',
+		scope: 'openid profile email',
 	});
 
 	login() {
@@ -52,6 +37,7 @@ class AuthService {
 		this.accessToken = authResult.accessToken;
 		this.idToken = authResult.idToken;
 		this.expiresAt = authResult.expiresIn * 1000 + new Date().getTime();
+		this.profile = authResult.idTokenPayload;
 
 		this.authNotifier.emit('authChange', true);
 		localStorage.setItem('loggedIn', true);
