@@ -1,4 +1,5 @@
 const Ajv = require('ajv');
+const ajv = new Ajv({ allErrors: true });
 
 const schema = {
 	type: 'object',
@@ -12,10 +13,8 @@ const schema = {
 	},
 };
 
-const ajv = new Ajv({ allErrors: true });
-const validate = ajv.compile(schema);
-
 export default documentToValidate => {
-	const validation = validate(documentToValidate);
-	return { isValid: validation, message: ajv.errorsText(validate.errors) };
+	// const validation = validate(documentToValidate);
+	const validation = Ajv.validate(schema, documentToValidate);
+	return { isValid: validation, message: ajv.errorsText(validation.errors) };
 };
