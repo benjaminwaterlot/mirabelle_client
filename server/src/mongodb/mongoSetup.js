@@ -11,6 +11,7 @@ const URL =
 
 const connectToMongo = () => {
 	if (DB) return Promise.resolve(DB);
+
 	return MongoClient.connect(URL).then(client => {
 		DB = client.db('mirabelle');
 		initialize();

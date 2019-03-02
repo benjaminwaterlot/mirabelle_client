@@ -4,9 +4,6 @@ import router from './../router';
 import { clientId } from './creds';
 
 class AuthService {
-	accessToken;
-	idToken;
-	expiresAt;
 	authNotifier = new EventEmitter();
 
 	auth0 = new auth0.WebAuth({
@@ -34,13 +31,14 @@ class AuthService {
 	}
 
 	setSession(authResult) {
-		this.accessToken = authResult.accessToken;
-		this.idToken = authResult.idToken;
-		this.expiresAt = authResult.expiresIn * 1000 + new Date().getTime();
-		this.profile = authResult.idTokenPayload;
+		const expiresAt = authResult.expiresIn * 1000 + new Date().getTime();
 
-		this.authNotifier.emit('authChange', true);
 		localStorage.setItem('loggedIn', true);
+		localStorage.setItem('idToken', authResult.idToken);
+		localStorage.setItem('accessToken', authResult.accessToken);
+		localStorage.setItem('expiresAt', expiresAt);
+		localStorage.setItem('profile', authResult.idTokenPayload);
+		this.authNotifier.emit('authChange', true);
 	}
 
 	renewSession() {
@@ -55,11 +53,12 @@ class AuthService {
 	}
 
 	logout() {
-		this.accessToken = null;
-		this.idToken = null;
-		this.expiresAt = null;
-		this.authNotifier.emit('authChange', false);
 		localStorage.removeItem('loggedIn');
+		localStorage.removeItem('idToken');
+		localStorage.removeItem('accessToken');
+		localStorage.removeItem('expiresAt');
+		localStorage.removeItem('profile');
+		this.authNotifier.emit('authChange', false);
 
 		this.auth0.logout({
 			returnTo: 'http://localhost:8080/home',
@@ -72,7 +71,7 @@ class AuthService {
 	}
 
 	isAuthenticated() {
-		const expiresAt = Number(this.expiresAt);
+		const expiresAt = Number(localStorage.getItem('expiresAt'));
 		const timeRemaining = expiresAt - new Date().getTime();
 		const remainingMinutes = (timeRemaining / 60000).toFixed(1);
 

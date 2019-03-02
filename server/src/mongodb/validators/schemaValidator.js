@@ -25,18 +25,19 @@ const unknownSchemaError = schema => ({
 	message: `ERROR : Unknown schema type : >${schema.collection}<`,
 });
 
-const validationObject = validation => ({
-	isValid: validation,
-	message: ajv.errorsText(validation.errors) + '\n',
-});
+// const validationObject = validation => ;
 
 export default (documentToValidate, type) => {
 	const ajv = new Ajv({ allErrors: true });
-	const schema = schemas.find(schema => schema.type === type);
+	const schema = schemas.find(schema => schema.collection === type);
 
-	if (!schema) return unknownSchemaError;
+	if (schema === undefined || !schema) return unknownSchemaError;
 
 	const validation = ajv.validate(schema.schema, documentToValidate);
+	console.log('VALIDATION RESULT ', validation);
 
-	return validation;
+	return {
+		isValid: validation,
+		message: ajv.errorsText(validation.errors) + '\n',
+	};
 };
