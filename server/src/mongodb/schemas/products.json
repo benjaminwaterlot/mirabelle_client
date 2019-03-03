@@ -1,5 +1,6 @@
 {
 	"type": "object",
+	"additionalProperties": false,
 	"required": [
 		"ref",
 		"name",
@@ -8,12 +9,10 @@
 		"category",
 		"wiki_ref",
 		"sale",
-		"features",
+		"details",
 		"supply",
 		"manufacturing"
 	],
-	"description": "TODO : REQUIRED PROPERTIES STILL TO DECIDE",
-	"additionalProperties": false,
 	"properties": {
 		"ref": { "type": "string" },
 		"name": { "type": "string" },
@@ -28,18 +27,19 @@
 		"sale": {
 			"type": "object",
 			"additionalProperties": false,
+			"requiredProperties": ["priceHt", "minimumQuantity", "quantifier", "weight"],
 			"properties": {
 				"priceHt": { "type": "integer" },
 				"promoPriceHt": { "type": "integer" },
-				"subscriptionPriceHt": { "type": "integer" },
 				"minimumQuantity": { "type": "integer" },
-				"unit": { "type": "string", "enum": ["UNIT", "KG"] },
+				"quantifier": { "type": "string", "enum": ["UNIT", "KG"] },
 				"weight": { "type": "integer" }
 			}
 		},
-		"features": {
+		"details": {
 			"type": "object",
 			"additionalProperties": false,
+			"requiredProperties": ["isBio", "isLocal"],
 			"properties": {
 				"isBio": { "type": "boolean" },
 				"isLocal": { "type": "boolean" }
@@ -48,16 +48,18 @@
 		"supply": {
 			"type": "object",
 			"additionalProperties": false,
+			"requiredProperties": ["price", "quantifier"],
 			"properties": {
 				"price": { "type": "integer" },
-				"unit": { "type": "string", "enum": ["UNIT", "KG"] }
+				"quantifier": { "type": "string", "enum": ["UNIT", "KG"] }
 			}
 		},
 		"manufacturing": {
 			"type": "object",
 			"additionalProperties": false,
+			"requiredProperties": ["quantifier", "supplier", "process", "lettring"],
 			"properties": {
-				"unit": { "type": "string", "enum": ["UNIT", "KG"] },
+				"quantifier": { "type": "string", "enum": ["UNIT", "KG"] },
 				"supplier": { "type": "string" },
 				"process": { "type": "string" },
 				"lettring": { "type": "string" }
