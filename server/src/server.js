@@ -4,38 +4,15 @@ const { ApolloServer } = require('apollo-server-express');
 
 import { connectToMongo } from './mongodb/mongoSetup';
 import { globalResolvers, globalTypes } from './graphql/initialize';
+
 import resolvers from './graphql/resolvers';
 import schemas from './graphql/schemas';
 import testSchemas from './tests/testSchemas';
 import createCollections from './mongodb/initialize/createCollections';
-import { runInNewContext } from 'vm';
 
-const cors = require('cors');
-const jwt = require('express-jwt');
-const jwtAuthz = require('express-jwt-authz');
-const jwksRsa = require('jwks-rsa');
-
-const corsOptions = {
-	origin: 'http://localhost:8080',
-};
-
-const checkJwt = jwt({
-	// Dynamically provide a signing key
-	// based on the kid in the header and
-	// the signing keys provided by the JWKS endpoint.
-	secret: jwksRsa.expressJwtSecret({
-		cache: true,
-		rateLimit: true,
-		jwksRequestsPerMinute: 5,
-		jwksUri: `https://basilicetmirabelle.eu.auth0.com/.well-known/jwks.json`,
-	}),
-
-	// Validate the audience and the issuer.
-	audience: 'https://express_server/',
-	issuer: `https://basilicetmirabelle.eu.auth0.com/`,
-	algorithms: ['RS256'],
-	credentialsRequired: false,
-});
+import middleware_cors from './middlewares/middleware_cors';
+import middleware_jwt from './middlewares/middleware_jwt';
+import middleware_jwt_invalid from './middlewares/middleware_jwt_invalid';
 
 const server = new ApolloServer({
 	typeDefs: [globalTypes, schemas],
@@ -49,8 +26,9 @@ const server = new ApolloServer({
 
 const app = express();
 
-app.use(cors(corsOptions));
-app.use(checkJwt);
+app.use(middleware_cors);
+app.use(middleware_jwt);
+app.use(middleware_jwt_invalid);
 
 server.applyMiddleware({ app });
 
