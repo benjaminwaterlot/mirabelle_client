@@ -1,11 +1,67 @@
 {
 	"type": "object",
-	"required": ["label", "description_short", "origin", "ref", "fragility"],
+	"required": [
+		"ref",
+		"name",
+		"picture",
+		"origin",
+		"category",
+		"wiki_ref",
+		"sale",
+		"features",
+		"supply",
+		"manufacturing"
+	],
+	"description": "TODO : REQUIRED PROPERTIES STILL TO DECIDE",
+	"additionalProperties": false,
 	"properties": {
 		"ref": { "type": "string" },
-		"label": { "type": "string" },
-		"description_short": { "type": "string" },
+		"name": { "type": "string" },
+		"detail": { "type": "string" },
+		"picture": { "type": "string" },
 		"origin": { "type": "string" },
-		"fragility": { "type": "string" }
+		"category": {
+			"type": "string",
+			"enum": ["FRUIT", "VEGETABLE", "OTHER"]
+		},
+		"wiki_ref": { "type": "string" },
+		"sale": {
+			"type": "object",
+			"additionalProperties": false,
+			"properties": {
+				"priceHt": { "type": "integer" },
+				"promoPriceHt": { "type": "integer" },
+				"subscriptionPriceHt": { "type": "integer" },
+				"minimumQuantity": { "type": "integer" },
+				"unit": { "type": "string", "enum": ["UNIT", "KG"] },
+				"weight": { "type": "integer" }
+			}
+		},
+		"features": {
+			"type": "object",
+			"additionalProperties": false,
+			"properties": {
+				"isBio": { "type": "boolean" },
+				"isLocal": { "type": "boolean" }
+			}
+		},
+		"supply": {
+			"type": "object",
+			"additionalProperties": false,
+			"properties": {
+				"price": { "type": "integer" },
+				"unit": { "type": "string", "enum": ["UNIT", "KG"] }
+			}
+		},
+		"manufacturing": {
+			"type": "object",
+			"additionalProperties": false,
+			"properties": {
+				"unit": { "type": "string", "enum": ["UNIT", "KG"] },
+				"supplier": { "type": "string" },
+				"process": { "type": "string" },
+				"lettring": { "type": "string" }
+			}
+		}
 	}
 }
