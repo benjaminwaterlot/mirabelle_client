@@ -41,33 +41,17 @@ export default {
 			console.log("LOCALSTORAGE CONTENT : ", localStorage);
 		},
 		updateStatus: function(boolean) {
-			if (boolean === true) this.isAuthenticated = true;
-			else if (boolean === false) this.isAuthenticated = false;
-			else this.isAuthenticated = auth.isAuthenticated();
+			this.isAuthenticated = auth.isAuthenticated();
 		}
 	},
 	mounted() {
-		setTimeout(this.updateStatus, 100);
+		// setTimeout(this.updateStatus, 100);
+		this.updateStatus();
 		console.log(auth);
-		console.log("CREATING THE LISTENER");
 
 		auth.authNotifier.on("authChange", (event, listener) => {
 			console.log("RECEIVED AN EVENT", event, " and ", listener);
-			// if (event === true) this.updateStatus(true);
-			// else this.updateStatus();
 			this.updateStatus();
-
-			// auth.authNotifier.on("authChange", () => {
-			// 	console.log("B");
-			// 	this.updateStatus();
-			// });
-			// if (event === "authChange") {
-			// 	// Insert a new listener in front
-			// 	myEmitter.on("authChange", () => {
-			// 		console.log("B");
-			// 		this.updateStatus();
-			// 	});
-			// }
 		});
 	},
 	data() {

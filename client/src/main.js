@@ -10,13 +10,19 @@ import AuthService from './auth/AuthService';
 
 const apolloClient = new ApolloClient({
 	uri: 'http://localhost:4000/graphql',
-	request: original => {
-		console.log(`Bearer ${localStorage.getItem('accessToken')}`);
-		return original.setContext({
-			headers: {
-				authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-			},
-		});
+	request: async original => {
+		const accessToken = localStorage.getItem('accessToken');
+		const authToken = accessToken
+			? `Bearer ${localStorage.getItem('accessToken')}`
+			: null;
+		console.log(authToken ? authToken : `NOT CREDENTIALS SENT IN HEADERS.`);
+		if (accessToken) {
+			original.setContext({
+				headers: {
+					authorization: authToken,
+				},
+			});
+		}
 	},
 });
 

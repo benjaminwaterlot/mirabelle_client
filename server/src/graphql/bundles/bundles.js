@@ -18,8 +18,6 @@ const productSchemas = gql`
 const productResolvers = {
 	Query: {
 		getBundles: (obj, args, context) => {
-			console.info(`Token : ${context.token}`);
-			console.info(`Token2 :`, context);
 			return BUNDLES.find().toArray();
 		},
 	},

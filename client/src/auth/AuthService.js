@@ -12,6 +12,7 @@ class AuthService {
 		redirectUri: 'http://localhost:8080/login',
 		responseType: 'token id_token',
 		scope: 'openid profile email',
+		audience: 'https://express_server/',
 	});
 
 	login() {
