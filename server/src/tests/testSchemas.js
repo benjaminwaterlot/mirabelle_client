@@ -3,25 +3,34 @@ import schemaValidator from '../mongodb/validators/schemaValidator';
 import sampleCustomer from './sampleCustomer';
 import sampleProduct from './sampleProduct';
 
-const tests = [
+const collections = [
 	{
-		collection: 'products',
-		sample: sampleProduct,
+		collName: 'products',
+		samples: sampleProduct,
 	},
 	{
-		collection: 'customers',
-		sample: sampleCustomer,
+		collName: 'customers',
+		samples: sampleCustomer,
 	},
 ];
 
 export default async () => {
-	for (const test of tests) {
-		const testResult = await schemaValidator(test.sample, test.collection);
-		if (testResult.isValid)
-			console.log(`✓ Schema test in [${test.collection}]: Success`);
-		else {
-			console.error(`✗ Schema test in [${test.collection}]: Error`);
-			console.error(testResult.message);
+	for (const collection of collections) {
+		for (const sample of collection.samples) {
+			const testResult = await schemaValidator(
+				sample,
+				collection.collName,
+			);
+			if (testResult.isValid)
+				console.log(
+					`✓ Schema test in [${collection.collName}]: Success`,
+				);
+			else {
+				console.error(
+					`✗ Schema test in [${collection.collName}]: Error`,
+				);
+				console.error(testResult.message);
+			}
 		}
 	}
 };

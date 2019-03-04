@@ -1,31 +1,51 @@
 {
 	"type": "object",
-	"required": ["identity"],
+	"additionalProperties": false,
+	"required": ["groupType", "groupId", "identity"],
 	"properties": {
-		"groupId": { "type": "integer" },
 		"groupType": {
-			"enum": ["homeDelivery", "collectionDelivery", "companyDelivery"]
+			"enum": ["HOME", "SHIPPING_POINT", "COMPANY"]
 		},
+		"groupId": { "type": "integer" },
 		"identity": {
 			"type": "object",
+			"additionalProperties": false,
 			"required": ["firstName", "surName", "email", "mobilePhone"],
 			"properties": {
 				"firstName": { "type": "string" },
 				"surName": { "type": "string" },
 				"birthDate": { "bsonType": "date" },
 				"email": { "type": "string" },
-				"classicPhone": { "type": "string" },
-				"mobilePhone": { "type": "string" },
-				"address": {
-					"type": "object",
-					"required": ["street", "postalCode"],
-					"properties": {
-						"street": { "type": "string" },
-						"additionalInfo": { "type": "string" },
-						"postalCode": { "type": "string" },
-						"country": { "type": "string" }
-					}
-				}
+				"landlinePhone": { "type": "string" },
+				"mobilePhone": { "type": "string" }
+			}
+		},
+		"payment": {
+			"canPayLater": { "type": "integer" }
+		},
+		"mainAddress": {
+			"type": "object",
+			"description": "This field is required if groupType is 'AT_HOME'.",
+			"additionalProperties": false,
+			"required": ["street", "city", "postalCode"],
+			"properties": {
+				"street": { "type": "string" },
+				"additionalInfo": { "type": "string" },
+				"postalCode": { "type": "string" },
+				"city": { "type": "string" },
+				"country": { "type": "string" }
+			}
+		},
+		"billingAddress": {
+			"type": "object",
+			"description": "If empty, 'mainAddress' is used for billing.",
+			"additionalProperties": false,
+			"required": ["street", "city", "postalCode"],
+			"properties": {
+				"street": { "type": "string" },
+				"additionalInfo": { "type": "string" },
+				"postalCode": { "type": "string" },
+				"country": { "type": "string" }
 			}
 		}
 	}

@@ -37,7 +37,7 @@ server.applyMiddleware({ app });
 	await connectToMongo();
 	console.debug('\n✪ Initializing collections...');
 	await createCollections();
-	console.debug('\n✪ Testing schemas...');
+	console.debug('\n✪ Testing schemas with raw data...');
 	await testSchemas();
 	console.debug('\n✪ Launching server...');
 	app.listen({ port: 4000 }, () => console.log('\n✪ Server ready ! 🚀'));

@@ -1,16 +1,46 @@
-{
-	"groupType": "homeDelivery",
-	"groupId": 2,
-	"identity": {
-		"firstName": "Benjamin",
-		"surName": "Waterlot",
-		"email": "test@test.fr",
-		"mobilePhone": "06 11 11 11 11",
-		"address": {
+[
+	{
+		"groupType": "HOME",
+		"groupId": 0,
+		"identity": {
+			"firstName": "Benjamin",
+			"surName": "Waterlot",
+			"birthDate": "1993-06-12",
+			"email": "test@test.fr",
+			"landlinePhone": "06 11 11 11 11",
+			"mobilePhone": "06 11 11 11 11"
+		},
+		"payment": {
+			"canPayLater": 100
+		},
+		"mainAddress": {
 			"street": "39 rue de l'abbé Groult",
 			"additionalInfo": "",
-			"postalCode": "75012",
+			"postalCode": "75015",
+			"city": "Paris",
+			"country": "France"
+		}
+	},
+	{
+		"groupType": "HOME",
+		"groupId": 0,
+		"identity": {
+			"firstName": "Quentin",
+			"surName": "Navarre",
+			"birthDate": "1993-06-13",
+			"email": "test2@test.fr",
+			"landlinePhone": "06 11 11 11 11",
+			"mobilePhone": "06 11 11 11 11"
+		},
+		"payment": {
+			"canPayLater": 0
+		},
+		"mainAddress": {
+			"street": "39 rue de l'abbé Groult",
+			"additionalInfo": "",
+			"postalCode": "75015",
+			"city": "Paris",
 			"country": "France"
 		}
 	}
-}
+]

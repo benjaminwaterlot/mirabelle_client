@@ -34,7 +34,6 @@ export default (documentToValidate, type) => {
 	if (schema === undefined || !schema) return unknownSchemaError;
 
 	const validation = ajv.validate(schema.schema, documentToValidate);
-	console.log('VALIDATION RESULT ', validation);
 
 	return {
 		isValid: validation,
