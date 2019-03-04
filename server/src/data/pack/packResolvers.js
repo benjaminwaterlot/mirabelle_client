@@ -1,9 +1,9 @@
-import { BUNDLES } from '../../mongodb/mongoSetup';
+import { PACKS } from '../../mongodb/mongoSetup';
 
 export default {
 	Query: {
 		getPacks: async (obj, args, context) => {
-			return BUNDLES.find().toArray();
+			return PACKS.find().toArray();
 		},
 	},
 };

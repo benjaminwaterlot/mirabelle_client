@@ -2,7 +2,6 @@ const MongoClient = require('mongodb').MongoClient;
 
 let DB;
 let CUSTOMERS;
-let BUNDLES;
 let PACKS;
 let PRODUCTS;
 let GROUPS;
@@ -20,10 +19,9 @@ const connectToMongo = () => {
 
 const initialize = () => {
 	CUSTOMERS = DB.collection('customers');
-	BUNDLES = DB.collection('bundles');
 	PACKS = DB.collection('packs');
 	PRODUCTS = DB.collection('products');
 	GROUPS = DB.collection('groups');
 };
 
-export { connectToMongo, DB, CUSTOMERS, BUNDLES, PACKS, PRODUCTS, GROUPS };
+export { connectToMongo, DB, CUSTOMERS, PACKS, PRODUCTS, GROUPS };

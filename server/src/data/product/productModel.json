@@ -7,7 +7,7 @@
 		"picture",
 		"origin",
 		"category",
-		"wiki_ref",
+		"wikiRef",
 		"sale",
 		"details",
 		"supply",
@@ -23,7 +23,7 @@
 			"type": "string",
 			"enum": ["FRUIT", "VEGETABLE", "OTHER"]
 		},
-		"wiki_ref": { "type": "string" },
+		"wikiRef": { "type": "string" },
 		"sale": {
 			"type": "object",
 			"additionalProperties": false,
