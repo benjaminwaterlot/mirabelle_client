@@ -1,6 +1,6 @@
 <template lang="pug">
 v-app
-	Navbar
+	Navbar(:updateStatus="updateStatus" :isAuthenticated="isAuthenticated")
 	v-content.light
 		router-view
 </template>
@@ -21,8 +21,19 @@ export default {
 			isAuthenticated: null
 		};
 	},
+	methods: {
+		updateStatus: function(boolean) {
+			this.isAuthenticated = auth.isAuthenticated();
+		}
+	},
 	mounted() {
-		this.isAuthenticated = auth.isAuthenticated();
+		this.updateStatus();
+		console.log(auth);
+
+		auth.authNotifier.on("authChange", (event, listener) => {
+			console.log("RECEIVED AN EVENT", event, " and ", listener);
+			this.updateStatus();
+		});
 	}
 };
 </script>

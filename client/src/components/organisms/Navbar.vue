@@ -15,8 +15,6 @@ v-toolbar.white.elevation-2(app prominent)
 	v-btn(v-else flat color="primary" @click="logout()")
 		v-icon(left) account_circle
 		span Se déconnecter
-	v-btn(color="secondary" fab small flat @click="getStatus()")
-		v-icon info
 	v-btn(color="secondary" fab small flat @click="updateStatus()")
 		v-icon autorenew
 
@@ -27,6 +25,10 @@ import auth from "@/auth/AuthService";
 
 export default {
 	name: "Navbar",
+	props: {
+		isAuthenticated: Boolean,
+		updateStatus: Function
+	},
 	methods: {
 		authenticate: function() {
 			auth.login();
@@ -35,29 +37,10 @@ export default {
 		logout: function() {
 			auth.logout();
 			this.updateStatus();
-		},
-		getStatus: function() {
-			console.log("AUTHENTICATION STATUS: ", auth);
-			console.log("LOCALSTORAGE CONTENT : ", localStorage);
-		},
-		updateStatus: function(boolean) {
-			this.isAuthenticated = auth.isAuthenticated();
 		}
-	},
-	mounted() {
-		// setTimeout(this.updateStatus, 100);
-		this.updateStatus();
-		console.log(auth);
-
-		auth.authNotifier.on("authChange", (event, listener) => {
-			console.log("RECEIVED AN EVENT", event, " and ", listener);
-			this.updateStatus();
-		});
 	},
 	data() {
 		return {
-			isAuthenticated: null,
-			authenticated: auth.isAuthenticated(),
 			items: [
 				{
 					label: "Nos supers paniers",

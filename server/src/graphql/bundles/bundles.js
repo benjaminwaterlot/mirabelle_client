@@ -17,7 +17,7 @@ const productSchemas = gql`
 
 const productResolvers = {
 	Query: {
-		getPacks: (obj, args, context) => {
+		getPacks: async (obj, args, context) => {
 			return BUNDLES.find().toArray();
 		},
 	},
