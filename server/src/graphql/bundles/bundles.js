@@ -11,13 +11,13 @@ const productSchemas = gql`
 		price: Int
 	}
 	extend type Query {
-		getBundles: [Bundle] @auth(requires: ADMIN)
+		getPacks: [Bundle] @auth(requires: ADMIN)
 	}
 `;
 
 const productResolvers = {
 	Query: {
-		getBundles: (obj, args, context) => {
+		getPacks: (obj, args, context) => {
 			return BUNDLES.find().toArray();
 		},
 	},

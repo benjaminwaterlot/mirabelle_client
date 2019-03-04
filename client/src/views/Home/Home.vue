@@ -9,7 +9,7 @@ v-container(fluid pa-0)
 				span.primary--text paniers bio
 			v-container(grid-list-xl pa-0 mt-2)
 				v-layout(row wrap)
-					v-flex(v-for="panier in getBundles" :key="panier.id" xs12 sm6 md4 lg4 xl3)
+					v-flex(v-for="panier in getPacks" :key="panier.id" xs12 sm6 md4 lg4 xl3)
 						ProductCard(v-bind="panier")
 		v-img.paper-separator.reverse(src="./white_separator_1.png" height="60px")
 	HowItWorks
@@ -32,10 +32,10 @@ export default {
 		HomeCarousel
 	},
 	apollo: {
-		getBundles: {
+		getPacks: {
 			query: gql`
 				{
-					getBundles {
+					getPacks {
 						label
 						description_short
 						price
