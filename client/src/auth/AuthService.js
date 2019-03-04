@@ -42,6 +42,7 @@ class AuthService {
 		this.authNotifier.emit('authChange', true);
 	}
 
+	// Not used at the moment.
 	renewSession() {
 		this.auth0.checkSession({}, (err, authResult) => {
 			if (authResult && authResult.accessToken && authResult.idToken) {
@@ -75,10 +76,23 @@ class AuthService {
 		const expiresAt = Number(localStorage.getItem('expiresAt'));
 		const timeRemaining = expiresAt - new Date().getTime();
 		const remainingMinutes = (timeRemaining / 60000).toFixed(1);
+		const authenticatedFlag = this.getAuthenticatedFlag() === 'true';
 
-		if (timeRemaining > 0)
+		if (authenticatedFlag && (!timeRemaining || timeRemaining <= 0)) {
+			console.log(
+				'Warning ! This session has expired. You are going to be log out.',
+			);
+			this.logout();
+			return false;
+		}
+
+		const isAuthenticatedAndFresh = authenticatedFlag && timeRemaining > 0;
+
+		if (isAuthenticatedAndFresh) {
 			console.log(`Login valid for ${remainingMinutes} minutes.`);
-		return timeRemaining > 0 && this.getAuthenticatedFlag() === 'true';
+		}
+
+		return isAuthenticatedAndFresh;
 	}
 }
 

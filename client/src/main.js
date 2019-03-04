@@ -6,7 +6,6 @@ import VueApollo from 'vue-apollo';
 import App from './App.vue';
 import router from './router';
 import ApolloClient from 'apollo-boost';
-import AuthService from './auth/AuthService';
 
 const apolloClient = new ApolloClient({
 	uri: 'http://localhost:4000/graphql',
@@ -15,7 +14,11 @@ const apolloClient = new ApolloClient({
 		const authToken = accessToken
 			? `Bearer ${localStorage.getItem('accessToken')}`
 			: null;
-		console.log(authToken ? authToken : `NOT CREDENTIALS SENT IN HEADERS.`);
+
+		console.log(
+			authToken ? `CREDENTIALS :\n${authToken}` : `NO CREDENTIALS`,
+		);
+
 		if (accessToken) {
 			original.setContext({
 				headers: {

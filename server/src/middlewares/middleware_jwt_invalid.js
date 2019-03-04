@@ -1,11 +1,7 @@
-const jwt = require('express-jwt');
-const jwtAuthz = require('express-jwt-authz');
-const jwksRsa = require('jwks-rsa');
+// We don't want to block expired tokens, because some resources are public
+// and should be displayed anyway. Authorization comes later, in GraphQL.
 
 export default (err, req, res, next) => {
-	if (err.code === 'invalid_token') {
-		req.user = null;
-		return next(err, req);
-	}
+	if (err.code === 'invalid_token') return next();
 	return next(err, req);
 };
