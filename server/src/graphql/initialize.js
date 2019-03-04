@@ -1,8 +1,20 @@
 const { gql } = require('apollo-server-express');
-// These empty schemas and resolvers are mandatory to "extend" the Query type
-// and modularize properly schemas. They are not used.
+
+// These EMPTY schemas and resolvers are mandatory to "extend" the Query type
+// and properly modularize schemas. They are not otherwise used.
 
 const globalTypes = gql`
+	directive @auth(
+		requires: UserGroup! = GUEST
+		personalAccess: Boolean! = false
+	) on FIELD_DEFINITION
+
+	enum UserGroup {
+		GUEST
+		CUSTOMER
+		ADMIN
+	}
+
 	type Query {
 		test: String
 	}

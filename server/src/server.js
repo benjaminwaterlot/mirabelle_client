@@ -14,6 +14,8 @@ import middleware_cors from './middlewares/middleware_cors';
 import middleware_jwt from './middlewares/middleware_jwt';
 import middleware_jwt_invalid from './middlewares/middleware_jwt_invalid';
 
+import authDirective from './graphql/directives/auth';
+
 const app = express();
 
 // Allow CORS, but only from our front-end VueJS website.
@@ -25,25 +27,26 @@ app.use(middleware_jwt);
 // Allow invalid/expired tokens to still access public resources, like guests.
 app.use(middleware_jwt_invalid);
 
-// Create our back-end GraphQL server, and save user's status and customerId.
-const server = new ApolloServer({
-	typeDefs: [globalTypes, schemas],
+// Create our back-end GraphQL server, and save user's roles and customerId.
+const graphQLServer = new ApolloServer({
 	resolvers: _.merge(globalResolvers, resolvers),
+	schemaDirectives: { auth: authDirective },
+	typeDefs: [globalTypes, schemas],
 	context: ({ req }) => {
 		const rawUser = req.user;
 		if (!rawUser) return null;
 
-		const status = rawUser['https://basilicetmirabelle/status'];
+		const roles = rawUser['https://basilicetmirabelle/status'];
 		const customerId = rawUser['https://basilicetmirabelle/customerId'];
-		const refinedUser = { status, customerId };
+		const user = { roles, customerId };
 
-		console.info(`USER STATUS IS `, refinedUser);
+		console.info(`USER STATUS IS `, user);
 
-		return refinedUser;
+		return { user };
 	},
 });
 
-server.applyMiddleware({ app });
+graphQLServer.applyMiddleware({ app });
 
 // Setup and launch Express
 (async () => {

@@ -11,7 +11,7 @@ const productSchemas = gql`
 		price: Int
 	}
 	extend type Query {
-		getBundles: [Bundle]
+		getBundles: [Bundle] @auth(requires: ADMIN)
 	}
 `;
 

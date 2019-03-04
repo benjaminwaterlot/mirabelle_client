@@ -10,6 +10,7 @@
 	"license": "ISC",
 	"dependencies": {
 		"ajv": "^6.9.2",
+		"apollo-server": "^2.4.8",
 		"apollo-server-express": "^2.4.0",
 		"cors": "^2.8.5",
 		"esm": "^3.2.5",
