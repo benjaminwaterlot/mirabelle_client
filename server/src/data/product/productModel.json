@@ -27,7 +27,12 @@
 		"sale": {
 			"type": "object",
 			"additionalProperties": false,
-			"requiredProperties": ["priceHt", "minimumQuantity", "quantifier", "weight"],
+			"requiredProperties": [
+				"priceHt",
+				"minimumQuantity",
+				"quantifier",
+				"weight"
+			],
 			"properties": {
 				"priceHt": { "type": "integer" },
 				"promoPriceHt": { "type": "integer" },
@@ -57,7 +62,12 @@
 		"manufacturing": {
 			"type": "object",
 			"additionalProperties": false,
-			"requiredProperties": ["quantifier", "supplier", "process", "lettring"],
+			"requiredProperties": [
+				"quantifier",
+				"supplier",
+				"process",
+				"lettring"
+			],
 			"properties": {
 				"quantifier": { "type": "string", "enum": ["UNIT", "KG"] },
 				"supplier": { "type": "string" },

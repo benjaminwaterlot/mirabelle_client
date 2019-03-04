@@ -16,18 +16,20 @@ const collections = [
 
 export default async () => {
 	for (const collection of collections) {
-		for (const sample of collection.samples) {
+		for (const [index, sample] of collection.samples.entries()) {
 			const testResult = await schemaValidator(
 				sample,
 				collection.collName,
 			);
 			if (testResult.isValid)
 				console.log(
-					`✓ Schema test in [${collection.collName}]: Success`,
+					`✓ Schema test ${index} in [${
+						collection.collName
+					}]: Success`,
 				);
 			else {
 				console.error(
-					`✗ Schema test in [${collection.collName}]: Error`,
+					`✗ Schema test ${index} in [${collection.collName}]: Error`,
 				);
 				console.error(testResult.message);
 			}

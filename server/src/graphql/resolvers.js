@@ -1,5 +1,5 @@
-import { productResolvers } from './bundles/bundles';
+import packResolvers from '../data/pack/packResolvers';
 
 export default {
-	...productResolvers,
+	...packResolvers,
 };

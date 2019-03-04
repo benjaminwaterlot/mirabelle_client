@@ -1,5 +1,5 @@
-import { productSchemas } from './bundles/bundles';
+import packSchemas from '../data/pack/packSchema';
 
 export default {
-	...productSchemas,
+	...packSchemas,
 };

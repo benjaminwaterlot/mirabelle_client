@@ -1,22 +1,22 @@
 const Ajv = require('ajv');
 
 // SCHEMAS
-import productSchema from '../schemas/products';
-import customerSchema from '../schemas/customers';
-import packSchema from '../schemas/packs';
+import productModel from '../../data/product/productModel';
+import customerModel from '../../data/customer/customerModel';
+import packModel from '../../data/pack/packModel';
 
 const schemas = [
 	{
 		collection: 'products',
-		schema: productSchema,
+		schema: productModel,
 	},
 	{
 		collection: 'customers',
-		schema: customerSchema,
+		schema: customerModel,
 	},
 	{
 		collection: 'packs',
-		schema: packSchema,
+		schema: packModel,
 	},
 ];
 
