@@ -1,7 +1,5 @@
 const cors = require('cors');
 
-const corsOptions = {
+export default cors({
 	origin: 'http://localhost:8080',
-};
-
-export default cors(corsOptions);
+});

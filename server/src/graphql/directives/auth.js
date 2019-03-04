@@ -31,6 +31,11 @@ export default class AuthDirective extends SchemaDirectiveVisitor {
 				isPersonalAccount(personalAccess, root, user) ||
 				hasRequiredRole(user, requires)
 			) {
+				console.debug(
+					`▻ User with id ${user.customerId} [${
+						user.roles
+					}] has been granted access to query ${info.fieldName}`,
+				);
 				const result = await resolve.apply(this, args);
 				return result;
 			}
