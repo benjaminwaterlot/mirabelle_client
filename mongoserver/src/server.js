@@ -1,11 +1,14 @@
 const express = require('express');
 
+import { connectToMongo } from './mongodb/mongoSetup';
+import testSchemas from './tests/testSchemas';
+import createCollections from './mongodb/initialize/createCollections';
+
 import middleware_cors from './middlewares/middleware_cors';
 import middleware_jwt from './middlewares/middleware_jwt';
 import middleware_jwt_invalid from './middlewares/middleware_jwt_invalid';
 
 import apolloServer from './graphql/apolloServerConfig';
-import initializeDB from './database/initialize';
 
 const app = express();
 
@@ -23,12 +26,13 @@ apolloServer.applyMiddleware({ app });
 
 // Launch the server
 (async () => {
-	console.log('✪ Connection has been established successfully.');
-
-	const db = await initializeDB();
-
-	console.log(await db.showAllSchemas({}));
-
+	console.debug('\n✪ Connecting to MongoDB...');
+	await connectToMongo();
+	console.debug('\n✪ Initializing collections...');
+	await createCollections();
+	console.debug('\n✪ Testing schemas with raw data...');
+	await testSchemas();
+	console.debug('\n✪ Launching server...');
 	app.listen({ port: 4000 }, () => console.debug('\n✪ Server ready ! 🚀'));
 })();
 
