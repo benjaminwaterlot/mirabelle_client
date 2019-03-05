@@ -33,6 +33,9 @@ apolloServer.applyMiddleware({ app });
 })();
 
 process.on('unhandledRejection', reason => {
-	console.error('Unhandled promise rejection:', reason);
+	console.error(
+		'\n\n\n🔥🔥🔥   ERROR: APP WILL STOP NOW.  🔥🔥🔥 \n\n\n',
+		reason,
+	);
 	process.exit(1);
 });
