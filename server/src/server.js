@@ -27,8 +27,6 @@ apolloServer.applyMiddleware({ app });
 
 	const db = await initializeDB();
 
-	console.log(await db.showAllSchemas({}));
-
 	app.listen({ port: 4000 }, () => console.debug('\n✪ Server ready ! 🚀'));
 })();
 

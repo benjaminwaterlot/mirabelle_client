@@ -27,10 +27,6 @@ export default async () => {
 			type: S.STRING,
 			allowNull: false,
 		},
-		groupId: {
-			type: S.INTEGER,
-			allowNull: false,
-		},
 		groupType: {
 			type: S.ENUM({ values: groupTypes }),
 			allowNull: false,
@@ -39,28 +35,59 @@ export default async () => {
 			type: S.DATE,
 			allowNull: true,
 		},
+		groupId: {
+			type: S.INTEGER,
+			// allowNull: false,
+		},
 	});
 
-	await db.drop();
+	const Group = db.define('groups', {
+		groupId: {
+			type: S.INTEGER,
+			unique: true,
+		},
+		name: {
+			type: S.STRING,
+			allowNull: false,
+			unique: true,
+		},
+	});
 
-	await db.sync();
+	await db.sync({ force: true });
 
-	const creations = [];
+	Customer.belongsTo(Group);
+	// Group.hasMany(Customer);
+	// Group.belongsTo(Customer);
+	// Customer.hasOne(Group);
+	// Group.belongsTo(Customer);
 
+	const fakeGroups = [];
+	for (const i of _.range(4)) {
+		fakeGroups[i] = Group.create({
+			groupId: i,
+			name: faker.hacker.noun().toUpperCase(),
+		});
+	}
+	await Promise.all(fakeGroups);
+
+	const fakeCustomers = [];
 	for (const i of _.range(10)) {
-		creations[i] = Customer.create({
+		fakeCustomers[i] = Customer.create({
 			surName: faker.name.firstName(),
 			lastName: faker.name.lastName(),
-			groupId: faker.random.number({ min: 1, max: 12 }),
+			// groupId: faker.random.number({ min: 1, max: 12 }),
 			groupType: faker.random.arrayElement(groupTypes),
 			birthDate: Math.random() > 0.8 ? null : faker.date.past(),
 		});
 	}
+	await Promise.all(fakeCustomers);
 
-	await Promise.all(creations);
+	for (const customer of fakeCustomers) {
+		await customer.setGroup(fakeGroups[1]);
+	}
 
 	const numberOfCustomers = await Customer.count();
-	console.log(numberOfCustomers, ' customers in table.');
+	console.log(`${numberOfCustomers} customers in table.`);
 
 	return new Promise((resolve, reject) => {
 		resolve(db);
