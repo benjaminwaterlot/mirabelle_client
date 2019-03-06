@@ -26,6 +26,11 @@ apolloServer.applyMiddleware({ app });
 	console.log('✪ Connection has been established successfully.');
 
 	const db = await initializeDB();
+	if (true) {
+		let a = 12;
+		console.log(a);
+	}
+	console.log(a); // undefined
 
 	app.listen({ port: 4000 }, () => console.debug('\n✪ Server ready ! 🚀'));
 })();

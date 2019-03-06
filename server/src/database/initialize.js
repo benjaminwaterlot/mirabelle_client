@@ -55,7 +55,7 @@ export default async () => {
 
 	await db.sync({ force: true });
 
-	Customer.belongsTo(Group);
+	// Customer.belongsTo(Group);
 	// Group.hasMany(Customer);
 	// Group.belongsTo(Customer);
 	// Customer.hasOne(Group);
@@ -69,9 +69,8 @@ export default async () => {
 		});
 	}
 	await Promise.all(fakeGroups);
-
 	const fakeCustomers = [];
-	for (const i of _.range(10)) {
+	for (const i of _.range(200)) {
 		fakeCustomers[i] = Customer.create({
 			surName: faker.name.firstName(),
 			lastName: faker.name.lastName(),
@@ -82,9 +81,9 @@ export default async () => {
 	}
 	await Promise.all(fakeCustomers);
 
-	for (const customer of fakeCustomers) {
-		await customer.setGroup(fakeGroups[1]);
-	}
+	// for (const customer of fakeCustomers) {
+	// 	await customer.setGroup(fakeGroups[1]);
+	// }
 
 	const numberOfCustomers = await Customer.count();
 	console.log(`${numberOfCustomers} customers in table.`);

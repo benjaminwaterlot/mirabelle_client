@@ -15,8 +15,8 @@ v-toolbar.white.elevation-2(app prominent)
 	v-btn(v-else flat color="primary" @click="logout()")
 		v-icon(left) account_circle
 		span Se déconnecter
-	v-btn(color="secondary" fab small flat @click="updateStatus()")
-		v-icon autorenew
+	v-btn(color="secondary" flat @click="updateStatus()")
+		v-icon face
 
 </template>
 
