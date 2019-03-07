@@ -30,7 +30,7 @@ export default db => {
 			type: S.DOUBLE,
 			allowNull: true,
 		},
-		minimumQuantity: {
+		minQuantity: {
 			type: S.INTEGER,
 			defaultValue: 1,
 		},
@@ -73,6 +73,6 @@ export default db => {
 			type: S.STRING,
 			allowNull: true,
 		},
-		// TODO: TO LINK THE PRODUCT WITH HIS WIKI ID.
+		// TODO: LINK THE PRODUCT WITH HIS WIKI ID.
 	});
 };
