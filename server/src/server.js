@@ -26,15 +26,14 @@ apolloServer.applyMiddleware({ app });
 	console.log('✪ Connection has been established successfully.');
 
 	const db = await initializeDB();
-	if (true) {
-		let a = 12;
-		console.log(a);
-	}
-	console.log(a); // undefined
+
+	// console.log(await db.models.Customer.count());
+	console.log(await db.models.customers.count());
 
 	app.listen({ port: 4000 }, () => console.debug('\n✪ Server ready ! 🚀'));
 })();
 
+// Catch unhandled errors and log them, then restart NodeJS.
 process.on('unhandledRejection', reason => {
 	console.error(
 		'\n\n\n🔥🔥🔥   ERROR: APP WILL STOP NOW.  🔥🔥🔥 \n\n\n',
