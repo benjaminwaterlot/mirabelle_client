@@ -7,6 +7,7 @@ v-container(fluid pa-0)
 			h1.mb-5.display-1.font-weight-medium
 				span Nos supers 
 				span.primary--text paniers bio
+				span {{ getWikis }}
 			v-container(grid-list-xl pa-0 mt-2)
 				v-layout(row wrap)
 					v-flex(v-for="panier in getPacks" :key="panier.id" xs12 sm6 md4 lg4 xl3)
@@ -32,6 +33,13 @@ export default {
 		HomeCarousel
 	},
 	apollo: {
+		getWikis: {
+			query: gql`
+				{
+					getWikis
+				}
+			`
+		},
 		getPacks: {
 			query: gql`
 				{
