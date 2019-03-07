@@ -6,6 +6,9 @@ import middleware_jwt_invalid from './middlewares/middleware_jwt_invalid';
 
 import apolloServer from './graphql/apolloServerConfig';
 import initializeDB from './database/initialize';
+import importFromGSheets from '../standalone/importFromGSheets';
+
+import productsdb from '../standalone/productsdb.json';
 
 const app = express();
 
@@ -29,6 +32,11 @@ apolloServer.applyMiddleware({ app });
 
 	// console.log(await db.models.Customer.count());
 	console.log(await db.models.customers.count());
+
+	// const productsFromGSheets = await importFromGSheets();
+	// console.log('We will insert this: ', productsFromGSheets.products[0]);
+	// console.log(productsFromGSheets.products.length);
+	db.models.products.bulkCreate(productsdb);
 
 	app.listen({ port: 4000 }, () => console.debug('\n✪ Server ready ! 🚀'));
 })();

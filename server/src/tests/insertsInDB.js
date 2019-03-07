@@ -10,7 +10,7 @@ export default async db => {
 	const allGroups = await insertGroups(db.models);
 	await setCustomerGroups(allCustomers, allGroups);
 
-	const allProducts = await insertProducts(db.models);
-	const allWikis = await insertWikis(db.models);
-	await setProductWikis(allProducts, allWikis);
+	// const allProducts = await insertProducts(db.models);
+	// const allWikis = await insertWikis(db.models);
+	// await setProductWikis(allProducts, allWikis);
 };

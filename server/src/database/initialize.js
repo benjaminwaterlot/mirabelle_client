@@ -15,6 +15,8 @@ const db = new S(process.env.DATABASE_URL, {
 	},
 });
 
+const DEBUG = true;
+
 export default async () => {
 	// Authenticate to the db
 	await db
@@ -26,6 +28,7 @@ export default async () => {
 	const Group = getGroupModel(db);
 	const Product = getProductModel(db);
 	const Wiki = getWikiModel(db);
+	if (!DEBUG) return db;
 
 	// Link the models.
 	Customer.belongsTo(Group);
@@ -33,8 +36,6 @@ export default async () => {
 
 	Product.belongsTo(Wiki);
 	Wiki.hasMany(Product);
-
-	// Product.hasOne(Wiki)
 
 	// Synchronyze these models with the DB.
 	await db.sync({ force: true });

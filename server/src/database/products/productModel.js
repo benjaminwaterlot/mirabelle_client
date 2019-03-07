@@ -26,11 +26,15 @@ export default db => {
 			type: S.ENUM(productCategories),
 			allowNull: false,
 		},
-		priceHt: {
+		price_ht: {
 			type: S.DOUBLE,
 			allowNull: true,
 		},
-		minQuantity: {
+		promo_price_ht: {
+			type: S.DOUBLE,
+			allowNull: true,
+		},
+		min_quantity: {
 			type: S.INTEGER,
 			defaultValue: 1,
 		},
@@ -42,35 +46,59 @@ export default db => {
 			type: S.DOUBLE,
 			allowNull: false,
 		},
-		isBio: {
+		bio: {
 			type: S.BOOLEAN,
 			defaultValue: true,
 		},
-		isLocal: {
+		local: {
 			type: S.BOOLEAN,
 			defaultValue: false,
 		},
-		supplyPrice: {
+		conv: {
+			type: S.BOOLEAN,
+			defaultValue: false,
+		},
+		demeter: {
+			type: S.BOOLEAN,
+			defaultValue: false,
+		},
+		fairtrade: {
+			type: S.BOOLEAN,
+			defaultValue: false,
+		},
+		supply_price: {
 			type: S.DOUBLE,
 			allowNull: false,
 		},
-		supplyQuantifier: {
+		supply_quantifier: {
 			type: S.ENUM(productQuantifiers),
 			allowNull: false,
 		},
-		manufacturingQuantifier: {
+		manufacturing_quantifier: {
 			type: S.ENUM(productQuantifiers),
 		},
-		manufacturingSupplier: {
+		manufacturing_supplier: {
 			type: S.STRING,
 			allowNull: true,
 		},
-		manufacturingProcess: {
+		manufacturing_process: {
 			type: S.STRING,
 			allowNull: true,
 		},
-		manufacturingLettring: {
+		manufacturing_lettring: {
 			type: S.STRING,
+			allowNull: true,
+		},
+		group_whitelist: {
+			type: S.ARRAY(S.INTEGER),
+			allowNull: true,
+		},
+		group_blacklist: {
+			type: S.ARRAY(S.INTEGER),
+			allowNull: true,
+		},
+		certification: {
+			type: S.BOOLEAN,
 			allowNull: true,
 		},
 		// TODO: LINK THE PRODUCT WITH HIS WIKI ID.
