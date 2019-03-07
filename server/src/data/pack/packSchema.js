@@ -1,14 +1,24 @@
 const { gql } = require('apollo-server-express');
 
 export default gql`
-	type Pack {
-		label: String
+	type Wiki {
+		ref: String
+		name: String
 		description_short: String
-		image_src: String
-		origin: String
-		price: Int
+		description_long: String
 	}
 	extend type Query {
-		getPacks: [Pack] @auth(requires: ADMIN)
+		getWikis: [Wiki]
+		# getWikis: [Wiki] @auth(requires: ADMIN)
 	}
+	# type Pack {
+	# 	label: String
+	# 	description_short: String
+	# 	image_src: String
+	# 	origin: String
+	# 	price: Int
+	# }
+	# extend type Query {
+	# 	getPacks: [Pack] @auth(requires: ADMIN)
+	# }
 `;

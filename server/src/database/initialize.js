@@ -7,42 +7,43 @@ import getWikiModel from './wikis/wikiModel';
 
 import insertsInDB from '../tests/insertsInDB';
 
-const db = new S(process.env.DATABASE_URL, {
-	dialect: 'postgres',
-	operatorsAliases: false,
-	dialectOptions: {
-		ssl: true,
-	},
-});
+// const db = new S(process.env.DATABASE_URL, {
+// 	dialect: 'postgres',
+// 	operatorsAliases: false,
+// 	dialectOptions: {
+// 		ssl: true,
+// 	},
+// });
 
 const DEBUG = true;
 
-export default async () => {
-	// Authenticate to the db
-	await db
-		.authenticate()
-		.catch(err => console.error('CANNOT AUTHENTICATE :\n', err));
+// export default async () => {
+// 	// Authenticate to the db
+// 	await db
+// 		.authenticate()
+// 		.catch(err => console.error('CANNOT AUTHENTICATE :\n', err));
 
-	// Generate the PostgreSQL models.
-	const Customer = getCustomerModel(db);
-	const Group = getGroupModel(db);
-	const Product = getProductModel(db);
-	const Wiki = getWikiModel(db);
-	if (!DEBUG) return db;
+// 	// Generate the PostgreSQL models.
+// 	const Customer = getCustomerModel(db);
+// 	const Group = getGroupModel(db);
+// 	const Product = getProductModel(db);
+// 	const Wiki = getWikiModel(db);
+// 	if (!DEBUG) return db;
 
-	// Link the models.
-	Customer.belongsTo(Group);
-	Group.hasMany(Customer);
+// 	// Link the models.
+// 	Customer.belongsTo(Group);
+// 	Group.hasMany(Customer);
 
-	Product.belongsTo(Wiki);
-	Wiki.hasMany(Product);
+// 	Product.belongsTo(Wiki);
+// 	Wiki.hasMany(Product);
 
-	// Synchronyze these models with the DB.
-	await db.sync({ force: true });
+// 	// Synchronyze these models with the DB.
+// 	// await db.sync({ force: true });
+// 	await db.sync();
 
-	// Insert fake infos for testing.
-	await insertsInDB(db, { Customer, Group });
+// 	// Insert fake infos for testing.
+// 	// await insertsInDB(db);
 
-	// Return the database, which is now queryable.
-	return db;
-};
+// 	// Return the database, which is now queryable.
+// 	return db;
+// };

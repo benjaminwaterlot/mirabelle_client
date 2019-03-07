@@ -7,12 +7,16 @@ export default db => {
 			unique: true,
 			allowNull: false,
 		},
-		description: {
+		name: {
 			type: S.STRING,
 			allowNull: false,
 		},
-		descriptionLong: {
-			type: S.STRING,
+		description_short: {
+			type: S.TEXT,
+			allowNull: false,
+		},
+		description_long: {
+			type: S.TEXT,
 			allowNull: false,
 		},
 		fragility: {
@@ -21,6 +25,30 @@ export default db => {
 		},
 		volume: {
 			type: S.DOUBLE,
+			allowNull: false,
+		},
+		conservation_fridge: {
+			type: S.STRING,
+			allowNull: true,
+		},
+		conservation_freezer: {
+			type: S.STRING,
+			allowNull: true,
+		},
+		preparation: {
+			type: S.TEXT,
+			allowNull: true,
+		},
+		nutrition: {
+			type: S.TEXT,
+			allowNull: true,
+		},
+		supply_ref: {
+			type: S.STRING,
+			allowNull: true,
+		},
+		image: {
+			type: S.STRING,
 			allowNull: false,
 		},
 	});

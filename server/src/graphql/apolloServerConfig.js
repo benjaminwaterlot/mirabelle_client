@@ -5,8 +5,9 @@ import resolvers from './resolvers';
 import schemas from './schemas';
 import { globalResolvers, globalTypes } from './initialize';
 import authDirective from './directives/auth';
+import DB from '../database/dataSource';
 
-const getUserContextFromRequest = req => {
+const getContextFromRequest = async req => {
 	const rawUser = req.user;
 
 	// No user found by middleware_jwt.
@@ -31,7 +32,7 @@ const getUserContextFromRequest = req => {
 	console.debug(`▻ User recognized as :\n`, user);
 
 	// User's infos are complete.
-	return user;
+	return { user: user };
 };
 
 export default new ApolloServer({
@@ -39,6 +40,7 @@ export default new ApolloServer({
 	schemaDirectives: { auth: authDirective },
 	typeDefs: [globalTypes, schemas],
 	context: ({ req }) => {
-		return { user: getUserContextFromRequest(req) };
+		return getContextFromRequest(req);
 	},
+	dataSources: () => ({ DB: new DB() }),
 });
