@@ -1,5 +1,5 @@
 <template lang="pug">
-v-container(fluid pa-0)
+v-container(fluid pa-0 transition="slide-x-transition")
 	HomeCarousel
 	div(style="background-color: white")
 		v-img.paper-separator(src="./white_separator_1.png" height="60px")

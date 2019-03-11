@@ -10,7 +10,7 @@ div
 			span.primary--text et de la nature !
 		v-container
 			v-layout(row justify-center wrap)
-				v-flex.px-3(v-for="item in items" xs4)
+				v-flex.px-3(v-for="item in items" xs12 sm6 md4)
 					v-layout(row align-center)
 						v-flex
 							v-img(:src="item.image" style="border-radius: 5px;" height="200")

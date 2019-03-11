@@ -36,7 +36,7 @@ export default {
 					id: 1,
 					heading: "Personnalisez-le avec vos produits préférés",
 					description:
-						"Envie d'un peu plus de pommes ou de bananes ? De remplacer des carottes pa des pommes de terre ? Faites-vous plaisir.",
+						"Envie d'un peu plus de pommes ou de bananes ? De remplacer des carottes par des pommes de terre ? Faites-vous plaisir.",
 					link_label: "Découvrez nos paniers",
 					link_route: "/",
 					image_src: "./HowItWorks/illu_etape_2.png"

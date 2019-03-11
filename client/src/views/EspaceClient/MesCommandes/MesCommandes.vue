@@ -1,5 +1,8 @@
 <template lang="pug">
-	h1 Mes commandes
+v-container(align-baseline)
+	h1.ec-title.darkaccent--text Mes commandes
+	v-container.white
+		h2 Coucou
 </template>
 
 <script>

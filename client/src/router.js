@@ -31,24 +31,30 @@ export default new Router({
 		},
 		{
 			path: '/mon-espace',
-			name: 'espaceclient',
 			component: EspaceClient,
 			children: [
 				{
-					path: 'accueil',
+					path: '/',
+					name: 'espaceclient',
 					component: EspaceAccueil,
 				},
 				{
 					path: 'mes-informations',
+					name: 'mesinformations',
 					component: MesInformations,
 				},
 				{
 					path: 'mes-commandes',
+					name: 'mescommandes',
 					component: MesCommandes,
 				},
-				{ path: '*', redirect: 'accueil' },
 			],
 		},
+		{
+			path: '*',
+			redirect: '/',
+		},
+		// { path: '/mon-espace*', redirect: '/mon-espace/accueil' },
 		// {
 		//   path: '/about',
 		//   name: 'about',

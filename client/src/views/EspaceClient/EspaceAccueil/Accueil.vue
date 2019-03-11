@@ -1,7 +1,7 @@
 <template lang="pug">
-v-container(xs9)
-	v-layout(column justify-start)
-		h1.bm-title.love-ya.darkaccent--text Mon espace client
+v-container(align-baseline)
+	h1.ec-title.darkaccent--text Mon espace client
+	p Laurem
 </template>
 
 <script>
