@@ -15,10 +15,6 @@ const apolloClient = new ApolloClient({
 			? `Bearer ${localStorage.getItem('accessToken')}`
 			: null;
 
-		console.log(
-			authToken ? `CREDENTIALS :\n${authToken}` : `NO CREDENTIALS`,
-		);
-
 		if (accessToken) {
 			original.setContext({
 				headers: {

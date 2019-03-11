@@ -63,7 +63,7 @@ class AuthService {
 		this.authNotifier.emit('authChange', false);
 
 		this.auth0.logout({
-			returnTo: 'http://localhost:8080/home',
+			returnTo: 'http://localhost:8080/',
 			client_id: clientId,
 		});
 	}

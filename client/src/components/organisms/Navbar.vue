@@ -1,9 +1,9 @@
 <template lang='pug'>
-v-toolbar.white.elevation-2(app prominent)
-	//- v-btn.ma-0.pa-1(flat to="/home" large height="100px")
-	v-img.hidden-sm-and-down(src="./logo.png" to="/home" contain max-height="75%")
+v-toolbar.white.elevation-2(app prominent style="z-index: 1000;")
+	//- v-btn.ma-0.pa-1(flat to="/" large height="100px")
+	v-img.hidden-sm-and-down(src="./logo.png" to="/" contain max-height="75%")
 	//- v-toolbar-title
-		//- v-btn.ma-0.pa-1(flat to="/home" large height="100px")
+		//- v-btn.ma-0.pa-1(flat to="/" large height="100px")
 		//- 	v-img(src="./logo.png" contain)
 	v-spacer(grow)
 	v-toolbar-items
@@ -16,7 +16,7 @@ v-toolbar.white.elevation-2(app prominent)
 	v-btn(v-if="!isAuthenticated" flat color="primary" @click="authenticate()")
 		v-icon(left) account_circle
 		span Se connecter
-	v-btn.ml-4(v-else flat color="primary" @click="logout()")
+	v-btn.ml-4(v-else flat color="primary" to="/mon-espace")
 		v-icon.hidden-md-and-down(left) face
 		v-icon.hidden-lg-and-up face
 		span.hidden-md-and-down Mon espace client

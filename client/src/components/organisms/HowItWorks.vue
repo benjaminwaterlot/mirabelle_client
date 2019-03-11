@@ -29,7 +29,7 @@ export default {
 					description:
 						"Choisissez parmi nos différents paniers de la semaine, personnalisez-le ou composez vous même votre commande de A à Z selon vos envies!",
 					link_label: "Ajoutez-y nos supers produits",
-					link_route: "/home",
+					link_route: "/",
 					image_src: "./HowItWorks/illu_etape_1.png"
 				},
 				{
@@ -38,7 +38,7 @@ export default {
 					description:
 						"Envie d'un peu plus de pommes ou de bananes ? De remplacer des carottes pa des pommes de terre ? Faites-vous plaisir.",
 					link_label: "Découvrez nos paniers",
-					link_route: "/home",
+					link_route: "/",
 					image_src: "./HowItWorks/illu_etape_2.png"
 				},
 				{
@@ -47,7 +47,7 @@ export default {
 					description:
 						"Gagnez du temps : faites vous livrer gratuitement au point retrait le plus proche ou choisissez une livraison à la maison ou bien directement au bureau (en Île de France).",
 					link_label: "Notre service de livraison",
-					link_route: "/home",
+					link_route: "/",
 					image_src: "./HowItWorks/illu_etape_3.png"
 				},
 				{
@@ -56,7 +56,7 @@ export default {
 					description:
 						"En hop c'est livré ! Vous êtes prêt à déguster nos délicieux produits. Besoin d'inspiration pour cuisiner ? Retrouvez toutes nos idées de recettes sur notre site.",
 					link_label: "Supers recettes",
-					link_route: "/home",
+					link_route: "/",
 					image_src: "./HowItWorks/illu_etape_4.png"
 				}
 			]
