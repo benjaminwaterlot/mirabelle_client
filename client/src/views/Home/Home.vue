@@ -18,58 +18,58 @@ v-container(fluid pa-0)
 <script>
 import gql from "graphql-tag";
 import ProductCard from "@/components/molecules/ProductCard";
-import HowItWorks from "./HowItWorks";
+import HowItWorks from "@/components/organisms/HowItWorks";
 import HomeCarousel from "./HomeCarousel";
 
 export default {
-  name: "Home",
-  data() {
-    return {};
-  },
-  components: {
-    ProductCard,
-    HowItWorks,
-    HomeCarousel
-  },
-  apollo: {
-    getWikis: {
-      query: gql`
-        {
-          getWikis {
-            name
-          }
-        }
-      `
-    }
-    // getPacks: {
-    // 	query: gql`
-    // 		{
-    // 			getPacks {
-    // 				label
-    // 				description_short
-    // 				price
-    // 				origin
-    // 				image_src
-    // 			}
-    // 		}
-    // 	`
-    // }
-  }
+	name: "Home",
+	data() {
+		return {};
+	},
+	components: {
+		ProductCard,
+		HowItWorks,
+		HomeCarousel
+	},
+	apollo: {
+		getWikis: {
+			query: gql`
+				{
+					getWikis {
+						name
+					}
+				}
+			`
+		}
+		// getPacks: {
+		// 	query: gql`
+		// 		{
+		// 			getPacks {
+		// 				label
+		// 				description_short
+		// 				price
+		// 				origin
+		// 				image_src
+		// 			}
+		// 		}
+		// 	`
+		// }
+	}
 };
 </script>
 
 <style lang="stylus" scoped>
 .primary--text {
-  font-family: 'Love Ya Like A Sister';
-  font-size: 1.2em;
+	font-family: 'Love Ya Like A Sister';
+	font-size: 1.2em;
 }
 
 .paper-separator {
-  top: -30px;
+	top: -30px;
 
-  &.reverse {
-    transform: scaleY(-1);
-    top: 30px;
-  }
+	&.reverse {
+		transform: scaleY(-1);
+		top: 30px;
+	}
 }
 </style>

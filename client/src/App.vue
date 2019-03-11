@@ -39,7 +39,4 @@ export default {
 </script>
 
 <style lang="stylus">
-.love-ya {
-	font-family: 'Love Ya Like A Sister';
-}
 </style>

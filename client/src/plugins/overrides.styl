@@ -1,3 +1,67 @@
 $body-font-family = 'Lato' !important
 $heading-font-family = 'Lato' !important
+$primary = #719125
+$secondary = #f89c73
+$lightaccent = #e2dbc9
+$darkaccent = #484848
+$accent = #8c9eff
+$error = #b71c1c
+$info = #2196F3
+$success = #4CAF50
+$warning = #FFC107
+$light = #FAF8F0
+
+.bm-section-header {
+	text-align: center;
+	font-size: 1.8em;
+	color: $darkaccent;
+}
+
+.bm-title {
+	font-weight: 300;
+	font-size: 2em;
+	text-align: center;
+
+	&.smaller {
+		font-size: 1.2em;
+	}
+}
+
+.bm-subtitle {
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	font-size: 0.8em;
+	font-weight: 400;
+}
+
+.bm-title-card {
+	font-size: 1.2em;
+	color: $darkaccent;
+	text-align: center;
+}
+
+.bm-text-card {
+	color: $darkaccent;
+	text-align: center;
+}
+
+.shadowed {
+	text-shadow: 2px 2px 3px hsla(0, 0.9, 0.8, 0.4);
+}
+
+.image-filter {
+	position: absolute;
+	opacity: 0.5;
+	width: 100%;
+	height: 100%;
+	top: 0px;
+
+	&.darker {
+		opacity: 0.25;
+	}
+}
+
+.love-ya {
+	font-family: 'Love Ya Like A Sister';
+}
 @import '~vuetify/src/stylus/main'
