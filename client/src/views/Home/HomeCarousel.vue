@@ -1,9 +1,7 @@
 <template lang="pug">
 v-img(src="./home_carousel.jpg" min-height="360")
 	v-layout(row align-center fill-height wrap)
-		v-spacer.hidden-sm-and-down
-		v-spacer.hidden-sm-and-down
-		v-spacer.hidden-sm-and-down
+		div.hidden-sm-and-down(style="flex-grow: 5")
 		v-layout(column align-center)
 			h3.text-uppercase.subtitle.lighter.darkaccent--text.hidden-sm-and-down Délicieux et savoureux
 			div.separator.lightaccent.my-3.hidden-sm-and-down
@@ -21,53 +19,55 @@ v-img(src="./home_carousel.jpg" min-height="360")
 </template>
 
 <script>
-export default {};
+export default {
+  name: "HomeCarousel"
+};
 </script>
 
 <style lang="stylus" scoped>
 .green-filter {
-	opacity: 0.5;
-	position: absolute;
-	width: 100%;
-	height: 100%;
+  opacity: 0.5;
+  position: absolute;
+  width: 100%;
+  height: 100%;
 }
 
 .subtitle {
-	text-align: center;
-	font-weight: 400;
-	font-size: 1em;
+  text-align: center;
+  font-weight: 400;
+  font-size: 1em;
 }
 
 .lighter {
-	letter-spacing: 0.15em;
+  letter-spacing: 0.15em;
 }
 
 .regular {
-	font-size: 1.4em;
-	font-weight: 600;
+  font-size: 1.4em;
+  font-weight: 600;
 }
 
 .main-title {
-	font-size: 4em;
-	line-height: 1em;
-	font-weight: 500;
-	font-family: 'Love Ya Like A Sister';
-	text-align: center;
+  font-size: 4em;
+  line-height: 1em;
+  font-weight: 500;
+  font-family: 'Love Ya Like A Sister';
+  text-align: center;
 }
 
 .cta {
-	border-radius: 0.2em;
-	text-transform: none;
-	font-size: 1.2em;
-	font-weight: 500;
+  border-radius: 0.2em;
+  text-transform: none;
+  font-size: 1.2em;
+  font-weight: 500;
 }
 
 .title-sep {
-	font-size: 0.6em;
+  font-size: 0.6em;
 }
 
 .separator {
-	width: 250px;
-	height: 2px;
+  width: 250px;
+  height: 2px;
 }
 </style>

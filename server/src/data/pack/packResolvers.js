@@ -1,8 +1,8 @@
 export default {
 	Query: {
 		getWikis: async (obj, args, context) => {
-			console.log(context);
-			return context.db.models.wikis.findAll({});
-		},
-	},
+			console.log(context.db);
+			return context.db.db.models.wikis.findAll({});
+		}
+	}
 };

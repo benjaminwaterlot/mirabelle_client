@@ -1,29 +1,35 @@
-import Vue from 'vue';
-import Router from 'vue-router';
-import Home from './views/Home/Home';
-import Authentication from './views/Authentication';
+import Vue from "vue";
+import Router from "vue-router";
+import Home from "./views/Home/Home";
+import Authentication from "./views/Authentication";
+import PageConcept from "./views/PageConcept/PageConcept";
 
 Vue.use(Router);
 
 export default new Router({
-	mode: 'history',
+	mode: "history",
 	base: process.env.BASE_URL,
 	routes: [
 		{
-			path: '/',
-			name: 'home',
-			component: Home,
+			path: "/",
+			name: "home",
+			component: Home
 		},
 		{
-			path: '/home',
-			name: 'home',
-			component: Home,
+			path: "/home",
+			name: "home",
+			component: Home
 		},
 		{
-			path: '/login',
-			name: 'login',
-			component: Authentication,
+			path: "/login",
+			name: "login",
+			component: Authentication
 		},
+		{
+			path: "/concept",
+			name: "concept",
+			component: PageConcept
+		}
 		// {
 		//   path: '/about',
 		//   name: 'about',
@@ -32,5 +38,5 @@ export default new Router({
 		//   // which is lazy-loaded when the route is visited.
 		//   component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
 		// }
-	],
+	]
 });

@@ -13,10 +13,10 @@ v-toolbar.white.elevation-2(app prominent)
 		v-icon(left) account_circle
 		span Se connecter
 	v-btn(v-else flat color="primary" @click="logout()")
-		v-icon(left) account_circle
-		span Se déconnecter
-	v-btn(color="secondary" flat @click="updateStatus()")
-		v-icon face
+		v-icon(left) face
+		span Mon espace client
+	//- v-btn(color="secondary" flat @click="updateStatus()")
+	//- 	v-icon face
 
 </template>
 
@@ -24,90 +24,90 @@ v-toolbar.white.elevation-2(app prominent)
 import auth from "@/auth/AuthService";
 
 export default {
-	name: "Navbar",
-	props: {
-		isAuthenticated: Boolean,
-		updateStatus: Function
-	},
-	methods: {
-		authenticate: function() {
-			auth.login();
-			this.updateStatus();
-		},
-		logout: function() {
-			auth.logout();
-			this.updateStatus();
-		}
-	},
-	data() {
-		return {
-			items: [
-				{
-					label: "Nos supers paniers",
-					dropdown: [
-						{
-							label: "Le super mix",
-							link: "/"
-						},
-						{
-							label: "Le super fruitier",
-							link: "/"
-						},
-						{
-							label: "Le super légumier",
-							link: "/"
-						}
-					],
-					dropdownOpen: false,
-					link: "/"
-				},
-				{
-					label: "Nos supers produits",
-					dropdown: [
-						{
-							label: "Fruits",
-							link: "/"
-						},
-						{
-							label: "Légumes",
-							link: "/"
-						},
-						{
-							label: "Épicerie",
-							link: "/"
-						}
-					],
-					dropdownOpen: false,
-					link: "/"
-				},
-				{
-					label: "Concept",
-					dropdown: null,
-					dropdownOpen: false,
-					link: "/"
-				},
-				{
-					label: "Nos supers recettes",
-					dropdown: null,
-					dropdownOpen: false,
-					link: "/"
-				},
-				{
-					label: "Livraison",
-					dropdown: null,
-					dropdownOpen: false,
-					link: "/"
-				}
-			]
-		};
-	}
+  name: "Navbar",
+  props: {
+    isAuthenticated: Boolean,
+    updateStatus: Function
+  },
+  methods: {
+    authenticate: function() {
+      auth.login();
+      this.updateStatus();
+    },
+    logout: function() {
+      auth.logout();
+      this.updateStatus();
+    }
+  },
+  data() {
+    return {
+      items: [
+        {
+          label: "Nos supers paniers",
+          dropdown: [
+            {
+              label: "Le super mix",
+              link: "/"
+            },
+            {
+              label: "Le super fruitier",
+              link: "/"
+            },
+            {
+              label: "Le super légumier",
+              link: "/"
+            }
+          ],
+          dropdownOpen: false,
+          link: "/"
+        },
+        {
+          label: "Nos supers produits",
+          dropdown: [
+            {
+              label: "Fruits",
+              link: "/"
+            },
+            {
+              label: "Légumes",
+              link: "/"
+            },
+            {
+              label: "Épicerie",
+              link: "/"
+            }
+          ],
+          dropdownOpen: false,
+          link: "/"
+        },
+        {
+          label: "Concept",
+          dropdown: null,
+          dropdownOpen: false,
+          link: "/"
+        },
+        {
+          label: "Nos supers recettes",
+          dropdown: null,
+          dropdownOpen: false,
+          link: "/"
+        },
+        {
+          label: "Livraison",
+          dropdown: null,
+          dropdownOpen: false,
+          link: "/"
+        }
+      ]
+    };
+  }
 };
 </script>
 
 <style lang="stylus" scoped>
 .link {
-	letter-spacing: 0.1em;
-	font-weight: 400;
-	font-size: 0.9em;
+  letter-spacing: 0.1em;
+  font-weight: 400;
+  font-size: 0.9em;
 }
 </style>
