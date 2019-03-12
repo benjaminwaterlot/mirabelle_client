@@ -1,5 +1,5 @@
 <template lang="pug">
-v-content.pa-0.light
+v-content.pa-0.white
 	IllustratedTitle(titleFirstPart="Basilic & Mirabelle"
 					titleMainPart="des Supers Paniers de"
 					titleLastPart="fruits & légumes bio"
@@ -16,9 +16,9 @@ v-content.pa-0.light
 							v-img(:src="item.image" style="border-radius: 5px;" height="200")
 							h3.bm-title-card.my-2 {{item.title}}
 							p.bm-text-card {{item.text}}
-	HowItWorks
-
-    
+	v-img.paper-separator.reverse(src="./white_separator_1.png" height="60px")
+	v-content.pa-0.light
+		HowItWorks
 </template>
 
 <script>

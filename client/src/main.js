@@ -35,15 +35,18 @@ const apolloProvider = new VueApollo({
 Vue.use(Vuetify, {
 	theme: {
 		primary: '#719125',
-		secondary: '#f89c73',
-		lightaccent: '#e2dbc9',
-		darkaccent: '#484848',
+		secondary: '#f89d73',
+		lightaccent: '#DECDAD',
+		darkaccent: '#474747',
+		light: '#f4eee2',
+		brown: '#969084',
+		yellow: '#FFBC00',
+		darkyellow: '#E3AA00',
 		accent: '#8c9eff',
 		error: '#b71c1c',
 		info: '#2196F3',
 		success: '#4CAF50',
 		warning: '#FFC107',
-		light: '#FAF8F0',
 	},
 });
 

@@ -9,7 +9,7 @@ div
 				span.bm-h1.ly {{ titleMainPart }}
 				br
 				span.bm-h1.smaller.ly {{ titleLastPart }}
-	v-img.paper-separator(src="./sand_separator_1.png" height="60px")
+	v-img.paper-separator(src="./white_separator_1.png" height="60px")
 	
 </template>
 
@@ -26,10 +26,4 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.paper-separator
-	top -40px
-
-	&.reverse
-		transform scaleY(-1)
-		top 40px
 </style>

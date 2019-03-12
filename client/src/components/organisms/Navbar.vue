@@ -1,7 +1,7 @@
 <template lang='pug'>
 v-toolbar.white.elevation-2(app prominent style="z-index: 1000;")
-	//- v-btn.ma-0.pa-1(flat to="/" large height="100px")
-	v-img.clickable.hidden-sm-and-down(src="./logo.png" contain max-height="75%" @click="() => this.$router.push({ path: '/' })")
+	v-btn.ma-0.pa-0(flat to="/" large)
+		v-img.ma-0.clickable.hidden-sm-and-down(src="./logo.png" contain max-height="75%" @click="() => this.$router.push({ path: '/' })")
 	//- v-toolbar-title
 		//- v-btn.ma-0.pa-1(flat to="/" large height="100px")
 		//- 	v-img(src="./logo.png" contain)

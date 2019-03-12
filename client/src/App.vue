@@ -2,8 +2,8 @@
 v-app
 	Navbar(:updateStatus="updateStatus" :isAuthenticated="isAuthenticated")
 	v-content.light
-	transition(name="slide-right" mode="out-in")
-		router-view
+		transition(name="slide-right" mode="out-in")
+			router-view
 </template>
 
 <script>
@@ -40,19 +40,4 @@ export default {
 </script>
 
 <style lang="stylus">
-.fade-enter {
-	opacity: 0;
-}
-
-.fade-enter-active {
-	transition: opacity 2s ease;
-}
-
-.fade-leave {
-}
-
-.fade-leave-active {
-	transition: opacity 2s ease;
-	opacity: 0;
-}
 </style>

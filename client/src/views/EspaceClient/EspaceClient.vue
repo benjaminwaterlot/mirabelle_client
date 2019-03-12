@@ -1,5 +1,5 @@
 <template lang="pug">
-v-container.pa-0(fluid)
+v-content.pa-0(fluid)
 	v-layout(row)
 		v-navigation-drawer(permanent clipped height="600")
 			//- v-toolbar(flat)
@@ -13,7 +13,7 @@ v-container.pa-0(fluid)
 						v-icon {{ category.icon }}
 					v-list-tile-content
 						v-list-tile-title {{ category.title }}
-		v-content.pt-1
+		v-content.light.pt-1
 			transition(name="slide-right" mode="out-in")
 				router-view
 </template>
