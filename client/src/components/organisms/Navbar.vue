@@ -18,7 +18,7 @@ v-toolbar.white.elevation-2(app prominent style="z-index: 1000;")
 	v-btn.ml-4(v-else flat color="primary" to="/mon-espace")
 		v-icon.hidden-md-and-down(left) face
 		v-icon.hidden-lg-and-up face
-		span.hidden-md-and-down Mon espace client
+		span.hidden-md-and-down Mon espace
 </template>
 
 <script>
@@ -97,7 +97,7 @@ export default {
 					label: "Livraison",
 					dropdown: null,
 					dropdownOpen: false,
-					link: "/"
+					link: "/livraison"
 				}
 			]
 		};
@@ -106,13 +106,11 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.link {
-	letter-spacing: 0.1em;
-	font-weight: 400;
-	font-size: 0.9em;
-}
+.link
+	letter-spacing 0.1em
+	font-weight 400
+	font-size 0.9em
 
-.clickable {
-	cursor: pointer;
-}
+.clickable
+	cursor pointer
 </style>

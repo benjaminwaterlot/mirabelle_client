@@ -1,16 +1,16 @@
 <template lang="pug">
-div
+v-content.pa-0.light
 	IllustratedTitle(titleFirstPart="Basilic & Mirabelle"
 					titleMainPart="des Supers Paniers de"
 					titleLastPart="fruits & légumes bio"
 					imageSrc="page_concept.jpg")
 	v-layout(column align-center)
-		h2.mb-4.bm-section-header(align-center style="max-width: 500px")
+		h2.bm-h2.mb-4(align-center style="max-width: 600px")
 			span Des produits sélectionnés avec amour de vos papilles... 
-			span.primary--text et de la nature !
+			span.primary--text.ly et de la nature !
 		v-container
 			v-layout(row justify-center wrap)
-				v-flex.px-3(v-for="item in items" xs12 sm6 md4)
+				v-flex.px-3(v-for="item in items" :key="item.title" xs12 sm6 md4)
 					v-layout(row align-center)
 						v-flex
 							v-img(:src="item.image" style="border-radius: 5px;" height="200")

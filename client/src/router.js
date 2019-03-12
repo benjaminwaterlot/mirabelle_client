@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import Home from './views/Home/Home';
 import Authentication from './views/Authentication';
 import PageConcept from './views/PageConcept/PageConcept';
+import PageLivraison from './views/PageLivraison/PageLivraison';
 import EspaceClient from './views/EspaceClient/EspaceClient';
 import MesInformations from './views/EspaceClient/MesInformations/MesInformations';
 import MesCommandes from './views/EspaceClient/MesCommandes/MesCommandes';
@@ -28,6 +29,11 @@ export default new Router({
 			path: '/concept',
 			name: 'concept',
 			component: PageConcept,
+		},
+		{
+			path: '/livraison',
+			name: 'livraison',
+			component: PageLivraison,
 		},
 		{
 			path: '/mon-espace',

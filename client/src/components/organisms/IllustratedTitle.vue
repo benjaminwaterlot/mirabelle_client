@@ -3,12 +3,12 @@ div
 	v-img(:src="imageSrc" min-height="360" max-height="420")
 		div.image-filter.darker.black
 		v-layout(column justify-center fill-height)
-			h1.bm-aligned(style="z-index: 120").white--text
-				span.bm-subtitle {{ titleFirstPart }}
+			h1.white--text.reduced-line(style="z-index: 120")
+				span.bm-pretitle {{ titleFirstPart }}
 				br
-				span.bm-title.love-ya {{ titleMainPart }}
+				span.bm-h1.ly {{ titleMainPart }}
 				br
-				span.smaller.love-ya {{ titleLastPart }}
+				span.bm-h1.smaller.ly {{ titleLastPart }}
 	v-img.paper-separator(src="./sand_separator_1.png" height="60px")
 	
 </template>
@@ -26,12 +26,10 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.paper-separator {
-	top: -40px;
+.paper-separator
+	top -40px
 
-	&.reverse {
-		transform: scaleY(-1);
-		top: 40px;
-	}
-}
+	&.reverse
+		transform scaleY(-1)
+		top 40px
 </style>

@@ -66,19 +66,16 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.love-ya {
-	font-family: 'Love Ya Like A Sister';
-	font-size: 3em;
-}
+.love-ya
+	font-family 'Love Ya Like A Sister'
+	font-size 3em
 
-.step-head {
-	font-family: 'Love Ya Like A Sister';
-	font-size: 1.2em;
-}
+.step-head
+	font-family 'Love Ya Like A Sister'
+	font-size 1.2em
 
-.step-num {
-	font-family: 'Love Ya Like A Sister';
-	font-size: 3em;
-	margin-top: -10px;
-}
+.step-num
+	font-family 'Love Ya Like A Sister'
+	font-size 3em
+	margin-top -10px
 </style>
