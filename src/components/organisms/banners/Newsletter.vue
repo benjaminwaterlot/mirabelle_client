@@ -13,7 +13,7 @@ v-content.pb-5.darkaccent
 									v-model="emailInput")
 					v-flex(xs6 sm4 md3 lg2)
 						v-btn.mx-4.mb-4.primary(dark large @click="send") Je m'inscris
-	v-snackbar(color="error" v-model="failure" bottom multi-line :timeout="10000")
+	v-snackbar(color="error" v-model="failure" bottom multi-line :timeout="5000")
 		span Erreur : un problème de connexion Internet empêche l'inscription. Réessayez plus tard !
 		v-btn.failure--text(@click="failure = false" flat) Fermer
 	v-snackbar(color="primary" v-model="success" bottom multi-line :timeout="10000")
