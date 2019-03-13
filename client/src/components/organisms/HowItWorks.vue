@@ -5,8 +5,8 @@ v-container.py-5
 		v-img.my-4(src='./green_separator.png' width='200')
 	v-container(grid-list-xl)
 		v-layout(row wrap)
-			v-flex.text-sm-center(v-for="step in steps" :key="step.id" xs12 sm6 md3)
-				v-layout.mb-4.px-5(row justify-space-between)
+			v-flex.text-sm-center(v-for="step in steps" :key="step.id" xs12 md6 lg3)
+				v-layout.pa-4.mb-4.px-5(row justify-space-between)
 					div
 						p.step-head.my-0.primary--text Etape
 						p.step-num.primary--text.font-weight-medium {{ step.id + 1 }}

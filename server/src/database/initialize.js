@@ -1,27 +1,30 @@
-const S = require("sequelize");
+const S = require('sequelize');
 
-import getCustomerModel from "./customers/customerModel";
-import getGroupModel from "./groups/groupModel";
-import getProductModel from "./products/productModel";
-import getWikiModel from "./wikis/wikiModel";
+import getCustomerModel from '../data/customer/customerModel';
+import getGroupModel from '../data/group/groupModel';
+import getProductModel from '../data/product/productModel';
+import getWikiModel from '../data/wiki/wikiModel';
+import getNewsletterModel from '../data/newsletter/newsletterModel';
 
 class DB {
 	constructor() {
 		this.db = new S(process.env.DATABASE_URL, {
-			dialect: "postgres",
+			dialect: 'postgres',
 			operatorsAliases: false,
 			dialectOptions: {
-				ssl: true
-			}
+				ssl: true,
+			},
 		});
 		this.initializeDb(this.db);
 	}
 	async initializeDb(db) {
 		await db
 			.authenticate()
-			.then(() => console.log("✪ Connection to POSTGRES has been established."))
+			.then(() =>
+				console.log('✪ Connection to POSTGRES has been established.'),
+			)
 			.catch(err => {
-				console.error("CANNOT AUTHENTICATE :\n", err);
+				console.error('CANNOT AUTHENTICATE :\n', err);
 				throw err;
 			});
 
@@ -29,6 +32,7 @@ class DB {
 		const Group = getGroupModel(db);
 		const Product = getProductModel(db);
 		const Wiki = getWikiModel(db);
+		const Newsletters = getNewsletterModel(db);
 
 		// Link the models.
 		Customer.belongsTo(Group);

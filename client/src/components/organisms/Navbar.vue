@@ -14,7 +14,7 @@ v-toolbar.white.elevation-2(app prominent style="z-index: 1000;")
 					v-list-tile-title {{ dropdown.label }}
 	v-btn(v-if="!isAuthenticated" flat color="primary" @click="authenticate()")
 		v-icon(left) account_circle
-		span Se connecter
+		span Me connecter
 	v-btn.ml-4(v-else flat color="primary" to="/mon-espace")
 		v-icon.hidden-md-and-down(left) face
 		v-icon.hidden-lg-and-up face
