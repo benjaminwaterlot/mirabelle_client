@@ -1,7 +1,9 @@
 import auth0 from 'auth0-js';
 import EventEmitter from 'eventemitter3';
 import router from './../router';
-import { clientId } from './creds';
+// import { clientId } from './creds';
+
+const clientId = 'a6K3NZlBCo33nUEQUFtzgTObbrgdyX1W';
 
 class AuthService {
 	authNotifier = new EventEmitter();
