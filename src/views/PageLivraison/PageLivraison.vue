@@ -3,7 +3,7 @@ v-content.pa-0.white
 	IllustratedTitle(titleFirstPart="Comment fonctionne"
 					titleMainPart="la livraison"
 					titleLastPart="de ma commande ?"
-					imageSrc="page_livraison/livraison_carousel_2.jpeg")
+					imageSrc="page_livraison/livraison_carousel.jpeg")
 	v-container.pa-0
 		v-layout(column align-center)
 			h2.bm-h2.mb-5(align-center style="max-width: 600px")

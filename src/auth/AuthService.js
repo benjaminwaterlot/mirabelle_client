@@ -11,7 +11,7 @@ class AuthService {
 	auth0 = new auth0.WebAuth({
 		domain: 'basilicetmirabelle.eu.auth0.com',
 		clientID: clientId,
-		redirectUri: 'http://localhost:8080/login',
+		redirectUri: `${window.location.origin}/login`,
 		responseType: 'token id_token',
 		scope: 'openid profile email',
 		audience: 'https://express_server/',
@@ -65,7 +65,7 @@ class AuthService {
 		this.authNotifier.emit('authChange', false);
 
 		this.auth0.logout({
-			returnTo: 'http://localhost:8080/',
+			returnTo: `${window.location.origin}`,
 			client_id: clientId,
 		});
 	}

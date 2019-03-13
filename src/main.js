@@ -8,7 +8,7 @@ import router from './router';
 import ApolloClient from 'apollo-boost';
 
 const apolloClient = new ApolloClient({
-	uri: 'http://localhost:4000/graphql',
+	uri: 'https://basilic-mirabelle.herokuapp.com/graphql',
 	request: async original => {
 		const accessToken = localStorage.getItem('accessToken');
 		const authToken = accessToken

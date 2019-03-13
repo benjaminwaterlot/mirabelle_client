@@ -53,34 +53,32 @@ export default {
 			}
 		},
 		addToNewsList() {
-			// TODO : REMOVE HERE
+			// this.success = true;
+			// this.successMessage = "Vous êtes inscrit !";
+			// this.$refs.form.reset();
 			const emailInput = this.emailInput;
-			this.success = true;
-			this.successMessage = "Vous êtes inscrit !";
-			this.$refs.form.reset();
 
-			// TODO : REBRANCH APOLLO HERE
-			// this.$apollo
-			// 	.mutate({
-			// 		mutation: gql`
-			// 			mutation($email: String!) {
-			// 				addToNewsletter(email: $email)
-			// 			}
-			// 		`,
-			// 		variables: {
-			// 			email: emailInput
-			// 		}
-			// 	})
-			// 	.then(data => {
-			// 		this.success = true;
-			// 		this.successMessage =
-			// 			(data.data || {}).addToNewsletter || "Vous êtes inscrit !";
-			// 		this.$refs.form.reset();
-			// 	})
-			// 	.catch(err => {
-			// 		this.failure = true;
-			// 		console.error("ERROR IN NEWSLETTER SUBSCRIPTION : \n", err);
-			// 	});
+			this.$apollo
+				.mutate({
+					mutation: gql`
+						mutation($email: String!) {
+							addToNewsletter(email: $email)
+						}
+					`,
+					variables: {
+						email: emailInput
+					}
+				})
+				.then(data => {
+					this.success = true;
+					this.successMessage =
+						(data.data || {}).addToNewsletter || "Vous êtes inscrit !";
+					this.$refs.form.reset();
+				})
+				.catch(err => {
+					this.failure = true;
+					console.error("ERROR IN NEWSLETTER SUBSCRIPTION : \n", err);
+				});
 		}
 	}
 };
