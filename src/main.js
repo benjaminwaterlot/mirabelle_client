@@ -7,8 +7,13 @@ import App from './App.vue';
 import router from './router';
 import ApolloClient from 'apollo-boost';
 
+const serverUri =
+	process.env.NODE_ENV === 'production'
+		? 'https://basilic-mirabelle.herokuapp.com/graphql'
+		: 'http://localhost:4000/graphql';
+
 const apolloClient = new ApolloClient({
-	uri: 'https://basilic-mirabelle.herokuapp.com/graphql',
+	uri: serverUri,
 	request: async original => {
 		const accessToken = localStorage.getItem('accessToken');
 		const authToken = accessToken
