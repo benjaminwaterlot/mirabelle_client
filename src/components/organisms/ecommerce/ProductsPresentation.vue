@@ -68,6 +68,9 @@ export default {
 					category
 					price_ht
 					bio
+					wiki_product {
+						description_short
+					}
 				}
 			}
 		`
