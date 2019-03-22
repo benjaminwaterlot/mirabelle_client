@@ -7,23 +7,27 @@ import App from './App.vue';
 import router from './router';
 import ApolloClient from 'apollo-boost';
 
-let appUrl;
-if (process.env.NODE_ENV === 'production') {
-	appUrl = 'https://basilic-mirabelle.herokuapp.com/graphql';
-} else if (process.env.NODE_ENV === 'development') {
-	appUrl = 'http://localhost:4000/graphql';
-} else throw new Error(`BAD ENVIRONMENT : ${process.env}`);
+const getServerUrl = env => {
+	switch (env.NODE_ENV) {
+		case 'production':
+			return 'https://basilic-mirabelle.herokuapp.com/graphql';
+
+		case 'development':
+			return 'http://localhost:4000/graphql';
+
+		default:
+			throw new Error(`BAD ENVIRONMENT : ${env}`);
+	}
+};
 
 const apolloClient = new ApolloClient({
-	uri: appUrl,
-	request: async original => {
+	uri: getServerUrl(process.env),
+	request: async request => {
 		const accessToken = localStorage.getItem('accessToken');
-		const authToken = accessToken
-			? `Bearer ${localStorage.getItem('accessToken')}`
-			: null;
+		const authToken = accessToken ? `Bearer ${accessToken}` : null;
 
 		if (accessToken) {
-			original.setContext({
+			request.setContext({
 				headers: {
 					authorization: authToken,
 				},

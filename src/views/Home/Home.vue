@@ -36,30 +36,6 @@ export default {
 		HomeCarousel,
 		Newsletter,
 		ProductsPresentation
-	},
-	apollo: {
-		// getWikis: {
-		// 	query: gql`
-		// 		{
-		// 			getWikis {
-		// 				name
-		// 			}
-		// 		}
-		// 	`
-		// }
-		// getPacks: {
-		// 	query: gql`
-		// 		{
-		// 			getPacks {
-		// 				label
-		// 				description_short
-		// 				price
-		// 				origin
-		// 				image_src
-		// 			}
-		// 		}
-		// 	`
-		// }
 	}
 };
 </script>

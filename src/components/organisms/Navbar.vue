@@ -9,7 +9,7 @@ v-toolbar.white.elevation-2(app prominent style="z-index: 1000;")
 			v-list(v-if="item.dropdown")
 				v-list-tile(@click="" v-for="dropdown in item.dropdown" :key="dropdown.label")
 					v-list-tile-title {{ dropdown.label }}
-	v-btn.mr-3(flat color="primary" @click="")
+	v-btn.mr-3(depressed color="primary lighten-1" @click="")
 		v-badge(color="secondary")
 			v-icon(left) shopping_basket
 			span.ly.font-weight-bold 14,50€

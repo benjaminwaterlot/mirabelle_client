@@ -62,6 +62,7 @@ export default {
 		getCurrentProducts: gql`
 			{
 				getCurrentProducts {
+					ref
 					name
 					picture
 					origin
