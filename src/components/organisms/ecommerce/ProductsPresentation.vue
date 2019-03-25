@@ -37,11 +37,6 @@ import _ from "lodash";
 
 export default {
 	name: "ProductsPresentation",
-	data() {
-		return {
-			// getCurrentProducts: tempProducts
-		};
-	},
 	components: {
 		ProductCard
 	},

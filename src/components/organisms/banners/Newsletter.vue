@@ -53,9 +53,6 @@ export default {
 			}
 		},
 		addToNewsList() {
-			// this.success = true;
-			// this.successMessage = "Vous êtes inscrit !";
-			// this.$refs.form.reset();
 			const emailInput = this.emailInput;
 
 			this.$apollo

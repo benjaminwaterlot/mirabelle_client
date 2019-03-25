@@ -31,6 +31,10 @@ export default {
 	methods: {
 		reduceText(text) {
 			return textReducer(text, 48);
+		},
+		addToBasket() {
+			// TODO: Complete the graphql call
+			return true;
 		}
 	}
 };
