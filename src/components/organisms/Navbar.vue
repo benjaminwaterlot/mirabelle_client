@@ -13,8 +13,8 @@ v-toolbar.white.elevation-2(app prominent style="z-index: 1000;")
 		v-badge(color="secondary")
 			v-icon(left) shopping_basket
 			span.ly.font-weight-bold 14,50€
-			template(v-slot:badge)
-				span.white--text.caption.font-weight-black 3
+			template(v-slot:badge v-if="user")
+				span.white--text.caption.font-weight-black {{ user.cart_items.length }}
 	v-divider(vertical)
 	v-btn(v-if="!isAuthenticated" flat color="darkaccent" @click="authenticate()")
 		v-icon(left) account_circle
@@ -28,6 +28,8 @@ v-toolbar.white.elevation-2(app prominent style="z-index: 1000;")
 
 <script>
 import auth from "@/auth/AuthService";
+import navbarMenus from "./navbarMenus";
+import gql from "graphql-tag";
 
 export default {
 	name: "Navbar",
@@ -47,65 +49,27 @@ export default {
 	},
 	data() {
 		return {
-			items: [
-				{
-					label: "Nos supers paniers",
-					dropdown: [
-						{
-							label: "Le super mix",
-							link: "/"
-						},
-						{
-							label: "Le super fruitier",
-							link: "/"
-						},
-						{
-							label: "Le super légumier",
-							link: "/"
-						}
-					],
-					dropdownOpen: false,
-					link: "/"
-				},
-				{
-					label: "Nos supers produits",
-					dropdown: [
-						{
-							label: "Fruits",
-							link: "/"
-						},
-						{
-							label: "Légumes",
-							link: "/"
-						},
-						{
-							label: "Épicerie",
-							link: "/"
-						}
-					],
-					dropdownOpen: false,
-					link: "/"
-				},
-				{
-					label: "Concept",
-					dropdown: null,
-					dropdownOpen: false,
-					link: "/concept"
-				},
-				{
-					label: "Nos supers recettes",
-					dropdown: null,
-					dropdownOpen: false,
-					link: "/"
-				},
-				{
-					label: "Livraison",
-					dropdown: null,
-					dropdownOpen: false,
-					link: "/livraison"
-				}
-			]
+			items: navbarMenus
 		};
+	},
+	apollo: {
+		user: gql`
+			query {
+				user(userId: "abc") {
+					id
+					customer_id
+					role
+					email
+					cart_items {
+						product_ref
+						user_id
+						getProduct {
+							name
+						}
+					}
+				}
+			}
+		`
 	}
 };
 </script>
