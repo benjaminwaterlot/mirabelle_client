@@ -10,6 +10,7 @@ v-app
 import Home from "./views/Home/Home";
 import Navbar from "@/components/organisms/Navbar";
 import auth from "@/auth/AuthService";
+import tokenGenerator from "@/helpers/tokenGenerator";
 
 export default {
 	name: "App",

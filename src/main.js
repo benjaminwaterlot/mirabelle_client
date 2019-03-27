@@ -6,6 +6,8 @@ import VueApollo from 'vue-apollo';
 import App from './App.vue';
 import router from './router';
 import ApolloClient from 'apollo-boost';
+import VueCookies from 'vue-cookies';
+import tokenGenerator from './helpers/tokenGenerator';
 
 const getServerUrl = env => {
 	switch (env.NODE_ENV) {
@@ -23,21 +25,33 @@ const getServerUrl = env => {
 const apolloClient = new ApolloClient({
 	uri: getServerUrl(process.env),
 	request: async request => {
+		// Set the access token when present.
 		const accessToken = localStorage.getItem('accessToken');
 		const authToken = accessToken ? `Bearer ${accessToken}` : null;
 
-		if (accessToken) {
-			request.setContext({
-				headers: {
-					authorization: authToken,
-				},
-			});
+		// Set the id cookie to identify guests too.
+		window.$cookies.config('30d');
+		if (!window.$cookies.get('identification'))
+			window.$cookies.set('identification', tokenGenerator());
+		console.info(
+			'Identification cookie is :',
+			window.$cookies.get('identification'),
+		);
+
+		// Generate the headers
+		const headers = {
+			'x-identification': window.$cookies.get('identification'),
+		};
+		if (authToken) {
+			headers.authorization = authToken;
 		}
+		request.setContext({ headers });
 	},
 });
 
 Vue.config.productionTip = false;
 Vue.use(VueApollo);
+Vue.use(VueCookies);
 
 const apolloProvider = new VueApollo({
 	defaultClient: apolloClient,

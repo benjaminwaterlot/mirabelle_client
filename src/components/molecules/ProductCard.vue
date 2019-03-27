@@ -7,7 +7,7 @@ v-hover
 				v-icon(medium) add
 			v-card-title.pt-0
 				h3.bm-h3.ly.primary--text.to-left {{ name }}
-				p.mb-0.to-left {{ reduceText(wiki_product.description_short || '') }}
+				p.mb-0.to-left {{ reducedText }}
 			v-card-actions.mt-2
 				v-layout(row wrap justify-space-around align-center)
 					v-chip.light()
@@ -23,18 +23,20 @@ export default {
 	name: "ProductCard",
 	props: {
 		name: String,
-		wiki_product: Object,
+		getWikiProduct: Object,
 		price_ht: Number,
 		origin: String,
 		picture: String
 	},
 	methods: {
-		reduceText(text) {
-			return textReducer(text, 48);
-		},
 		addToBasket() {
 			// TODO: Complete the graphql call
 			return true;
+		}
+	},
+	computed: {
+		reducedText: function() {
+			return textReducer((this.getWikiProduct || {}).description_short, 48);
 		}
 	}
 };

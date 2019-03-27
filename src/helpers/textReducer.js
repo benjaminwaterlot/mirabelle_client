@@ -1,4 +1,5 @@
 export default (text, length) => {
+	if (typeof text !== 'string') return '';
 	if (text.length <= length) return text;
 
 	while (text[length] && text[length] !== ' ') {

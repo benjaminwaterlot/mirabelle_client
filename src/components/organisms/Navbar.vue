@@ -14,7 +14,7 @@ v-toolbar.white.elevation-2(app prominent style="z-index: 1000;")
 			v-icon(left) shopping_basket
 			span.ly.font-weight-bold 14,50€
 			template(v-slot:badge v-if="user")
-				span.white--text.caption.font-weight-black {{ user.cart_items.length }}
+				span.white--text.caption.font-weight-black {{ (user.getCartItem || {}).length }}
 	v-divider(vertical)
 	v-btn(v-if="!isAuthenticated" flat color="darkaccent" @click="authenticate()")
 		v-icon(left) account_circle
@@ -60,7 +60,7 @@ export default {
 					customer_id
 					role
 					email
-					cart_items {
+					getCartItem {
 						product_ref
 						user_id
 						getProduct {
