@@ -30,10 +30,10 @@ v-content.white.py-0
 
 
 <script>
-import gql from "graphql-tag";
 import ProductCard from "@/components/molecules/ProductCard";
 import tempProducts from "./temp_products.json";
 import _ from "lodash";
+import getCurrentProducts from "@/queries/getCurrentProducts";
 
 export default {
 	name: "ProductsPresentation",
@@ -43,7 +43,6 @@ export default {
 	computed: {
 		refinedProducts: function() {
 			if (!this.getCurrentProducts) return [];
-			console.log(byCategory);
 
 			const imageRefined = this.getCurrentProducts.map(product => {
 				const { picture, ...rest } = product;
@@ -54,22 +53,7 @@ export default {
 		}
 	},
 	apollo: {
-		getCurrentProducts: gql`
-			{
-				getCurrentProducts {
-					ref
-					name
-					picture
-					origin
-					category
-					price_ht
-					bio
-					getWikiProduct {
-						description_short
-					}
-				}
-			}
-		`
+		getCurrentProducts
 	}
 };
 </script>

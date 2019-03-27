@@ -12,9 +12,9 @@ v-toolbar.white.elevation-2(app prominent style="z-index: 1000;")
 	v-btn.mr-3(depressed color="primary lighten-1" @click="")
 		v-badge(color="secondary")
 			v-icon(left) shopping_basket
-			span.ly.font-weight-bold 14,50€
-			template(v-slot:badge v-if="user")
-				span.white--text.caption.font-weight-black {{ (user.getCartItem || {}).length }}
+			span.ly.font-weight-bold {{ cartResume.total }}
+			template(v-slot:badge)
+				span.white--text.caption.font-weight-black {{ cartResume.count }}
 	v-divider(vertical)
 	v-btn(v-if="!isAuthenticated" flat color="darkaccent" @click="authenticate()")
 		v-icon(left) account_circle
@@ -49,27 +49,36 @@ export default {
 	},
 	data() {
 		return {
-			items: navbarMenus
+			items: navbarMenus,
+			cartResume: { total: "-", count: 0 }
 		};
 	},
 	apollo: {
-		user: gql`
-			query {
-				user(userId: "abc") {
-					id
-					customer_id
-					role
-					email
-					getCartItem {
-						product_ref
-						user_id
-						getProduct {
-							name
+		cartResume: {
+			query: gql`
+				{
+					user(mySelf: true) {
+						getCartItems {
+							getProduct {
+								price_ht
+							}
 						}
 					}
 				}
+			`,
+			update: data => {
+				const cartItems = data.user.getCartItems;
+				const cart = cartItems.reduce(
+					({ total, count }, thisItem) => ({
+						total: total + ((thisItem.getProduct || {}).price_ht || 0),
+						count: count + 1
+					}),
+					{ total: 0, count: 0 }
+				);
+				cart.total = cart.total.toFixed(2).toString() + " €";
+				return cart;
 			}
-		`
+		}
 	}
 };
 </script>

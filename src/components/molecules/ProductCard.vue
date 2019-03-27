@@ -18,19 +18,47 @@ v-hover
 </template>
 
 <script>
+import gql from "graphql-tag";
 import textReducer from "@/helpers/textReducer.js";
 export default {
 	name: "ProductCard",
 	props: {
 		name: String,
+		id: String,
 		getWikiProduct: Object,
 		price_ht: Number,
 		origin: String,
 		picture: String
 	},
+	mounted() {
+		console.log(this.id);
+	},
 	methods: {
 		addToBasket() {
-			// TODO: Complete the graphql call
+			this.$apollo.mutate({
+				mutation: gql`
+					mutation($id: String!) {
+						addCartItem(productRef: $id) {
+							getProduct {
+								price_ht
+							}
+						}
+					}
+				`,
+				variables: {
+					id: this.id
+				}
+			});
+			// .then(data => {
+			// 	this.success = true;
+			// 	this.successMessage =
+			// 		(data.data || {}).addToNewsletter || "Vous êtes inscrit !";
+			// 	this.$refs.form.reset();
+			// })
+			// .catch(err => {
+			// 	this.failure = true;
+			// 	console.error("ERROR IN NEWSLETTER SUBSCRIPTION : \n", err);
+			// });
 			return true;
 		}
 	},
